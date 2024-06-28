@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import largeTriangles from './assets/large-triangles.svg'; // Import the SVG
+
 
 
 function Signup() {
@@ -20,7 +22,11 @@ function Signup() {
     }
     
     return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
+        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100" style={{
+            backgroundImage: `url(${largeTriangles})`,
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center'
+        }}>
             <div className="bg-white p-3 rounded w-25">
                 <h2>Register</h2>
                 <form onSubmit={handleSubmit}>
@@ -63,7 +69,7 @@ function Signup() {
                          onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-success w-100 rounded-0">
+                    <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'blue', color: 'white', border: 'none' }}>
                         Register
                     </button>
                 </form>

@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import largeTriangles from './assets/large-triangles.svg'; // Import the SVG
+
+
 
 function Login() {
     const [email,setEmail] = useState()
@@ -10,20 +13,32 @@ function Login() {
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:3001/login',{email,password})
+        e.preventDefault();
+        if (!email || !password) {
+            setError("Email and password are required");
+            return;
+        }
+        axios.post('http://localhost:3001/login', { email, password })
         .then(result => {
-            console.log(result)
+            console.log(result);
             if (result.data === "Success") {
                 navigate('/home');
+            } else {
+                setError(result.data);
             }
-           
         })
-        .catch(error => console.log(error))
-    }
+        .catch(error => {
+            console.log(error);
+            setError("An error occurred. Please try again.");
+        });
+    };
     
     return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
+        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100" style= {{
+            backgroundImage: `url(${largeTriangles})`,
+            backgroundSize: 'cover', 
+            backgroundPosition: 'center'
+        }}>
             <div className="bg-white p-3 rounded w-25">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
@@ -53,7 +68,7 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-success w-100 rounded-0">
+                    <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'blue', color: 'white', border: 'none' }}>
                         Login
                     </button>
                 </form>

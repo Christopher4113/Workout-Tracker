@@ -18,22 +18,30 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1);
 });
 
-app.post("/login", (req,res) => {
-    const {email,password} = req.body;
-    userModel.findOne({email:email})
+app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.json("Email and password are required");
+    }
+
+    userModel.findOne({ email: email })
     .then(user => {
-        if(user) {
+        if (user) {
             if (user.password === password) {
-                res.json("Success")
+                res.json("Success");
             } else {
-                res.json("The password was incorrect")
+                res.json("The password was incorrect");
             }
         } else {
-            res.json("No email was registered")
+            res.json("No email was registered");
         }
     })
-})
-
+    .catch(error => {
+        console.log(error);
+        res.status(500).json("An error occurred. Please try again.");
+    });
+});
 app.post('/register', (req, res) => {
     userModel.create(req.body)
     .then(user => res.json(user))
