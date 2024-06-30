@@ -7,7 +7,9 @@ function Home() {
             backgroundSize: 'cover', 
             backgroundPosition: 'center'
         }}>
-
+            <div>
+                
+            </div>
         </div>
          
     )
