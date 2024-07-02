@@ -3,10 +3,11 @@ import menu from './assets/menu.jpg';
 import dumbell from './assets/dumbell.jpg';
 import running from './assets/running.jpg';
 import food from './assets/food.webp';
+import {Link} from 'react-router-dom'
 
 function Home() {
     const boxStyle = {
-        background: 'rgba(255, 255, 255, 0.2)',
+        background: 'rgba(255, 255, 255, 0.2)', // More transparent background
         borderRadius: '10px',
         padding: '100px', // Larger padding for a bigger box
         margin: '10px',
@@ -25,9 +26,17 @@ function Home() {
         marginBottom: '20px' // Space between the image and text
     };
 
+    const textStyle = {
+        color: 'white',
+        fontSize: '1.5em', // Larger font size
+        fontFamily: 'Times New Roman, Times, serif' // Times New Roman font
+    };
+
     const linkStyle = {
-        color: '#000',
-        textDecoration: 'none'
+        color: 'white',
+        fontSize: '1.2em', // Larger font size for link
+        textDecoration: 'none',
+        fontFamily: 'Times New Roman, Times, serif' // Times New Roman font
     };
 
     return (
@@ -51,17 +60,17 @@ function Home() {
             <div className='d-flex justify-content-around' style={{ width: '100%', marginTop: '200px' }}>
                 <div style={boxStyle}>
                     <img src={dumbell} alt="Dumbbell" style={imgStyle} />
-                    <p>Weight Lifting Tracker</p>
+                    <p style={textStyle}>Weight Lifting Tracker</p>
                     <a href="#dumbbell" style={linkStyle}>Learn More</a>
                 </div>
                 <div style={boxStyle}>
                     <img src={running} alt="Running" style={imgStyle} />
-                    <p>Endurance Tracker</p>
+                    <p style={textStyle}>Endurance Tracker</p>
                     <a href="#running" style={linkStyle}>Learn More</a>
                 </div>
                 <div style={boxStyle}>
                     <img src={food} alt="Food" style={imgStyle} />
-                    <p>Calorie Tracker</p>
+                    <p style={textStyle}>Calorie Tracker</p>
                     <a href="#food" style={linkStyle}>Learn More</a>
                 </div>
             </div>
