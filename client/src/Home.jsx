@@ -3,7 +3,6 @@ import menu from './assets/menu.jpg';
 import dumbell from './assets/dumbell.jpg';
 import running from './assets/running.jpg';
 import food from './assets/food.webp';
-import {Link} from 'react-router-dom'
 
 function Home() {
     const boxStyle = {
@@ -33,10 +32,25 @@ function Home() {
     };
 
     const linkStyle = {
-        color: 'white',
         fontSize: '1.2em', // Larger font size for link
+        fontFamily: 'Times New Roman, Times, serif', // Times New Roman font
+        width: 'fit-content',
+        padding: '12px 24px',
+        borderRadius: '100px',
+        border: 'none',
+        boxShadow: 'inset 0px 22px 20px 10px rgb(0, 0, 0)',
+        fontWeight: '800',
+        color: 'antiquewhite',
+        letterSpacing: '0.1rem',
+        transition: 'all 0.51s ease-in-out',
         textDecoration: 'none',
-        fontFamily: 'Times New Roman, Times, serif' // Times New Roman font
+        display: 'inline-block',
+        marginTop: '10px'
+    };
+
+    const buttonHoverStyle = {
+        transform: 'translateY(5px)',
+        boxShadow: 'inset 1px -11px 25px 10px rgb(91, 88, 240)'
     };
 
     return (
@@ -61,17 +75,17 @@ function Home() {
                 <div style={boxStyle}>
                     <img src={dumbell} alt="Dumbbell" style={imgStyle} />
                     <p style={textStyle}>Weight Lifting Tracker</p>
-                    <a href="#dumbbell" style={linkStyle}>Learn More</a>
+                    <a href="#dumbbell" style={{ ...linkStyle, ...buttonHoverStyle }}>Learn More</a>
                 </div>
                 <div style={boxStyle}>
                     <img src={running} alt="Running" style={imgStyle} />
                     <p style={textStyle}>Endurance Tracker</p>
-                    <a href="#running" style={linkStyle}>Learn More</a>
+                    <a href="#running" style={{ ...linkStyle, ...buttonHoverStyle }}>Learn More</a>
                 </div>
                 <div style={boxStyle}>
                     <img src={food} alt="Food" style={imgStyle} />
                     <p style={textStyle}>Calorie Tracker</p>
-                    <a href="#food" style={linkStyle}>Learn More</a>
+                    <a href="#food" style={{ ...linkStyle, ...buttonHoverStyle }}>Learn More</a>
                 </div>
             </div>
         </div>
