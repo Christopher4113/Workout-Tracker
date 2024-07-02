@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './Signup';
 import Login from './Login';
 import Home from './home.jsx';
+import Workout from './Workout'; // Import Workout component
+import Endurance from './Endurance'; // Import Endurance component
+import Calorie from './Calorie'; // Import Calorie component
 
 function App() {
    
@@ -13,6 +16,9 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/Workout" element={<Workout />} />
+        <Route path="/Endurance" element={<Endurance />} />
+        <Route path="/Calorie" element={<Calorie />} />
       </Routes>
     </BrowserRouter>
   );
