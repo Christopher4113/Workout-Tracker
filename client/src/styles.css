@@ -88,6 +88,31 @@
   }
 
 
+  /*Background Screen for workout tracker*/
+  .bg-secondary {
+    background-image: url('./assets/varying-stripes.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+    min-height: 100vh;
+    min-width: 100%;
+  }
+  .scrollable-form-container {
+    width: 80%;
+    max-width: 500px;
+    max-height: 70vh; /* Adjust the height as needed */
+    overflow-y: auto;
+    margin-left: 1350px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for readability */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+
+
   /* Workout Tracker form*/
 .tracker-container {
   width: 20%; /* Reduce the width to make the form smaller */

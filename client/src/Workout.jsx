@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 
 const Workout = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +15,8 @@ const Workout = () => {
     const { name, value } = e.target;
     if (name === 'sets') {
       const sets = Math.max(1, parseInt(value, 10)); // Ensure the minimum value for sets is 1
-      const weights = Array(sets).fill('');
-      const reps = Array(sets).fill('');
+      const weights = formData.weights.slice(0, sets); // Trim weights array if sets are reduced
+      const reps = formData.reps.slice(0, sets); // Trim reps array if sets are reduced
       setFormData({ ...formData, sets, weights, reps });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -52,19 +50,21 @@ const Workout = () => {
     console.log(formData);
   };
 
+
+
   return (
     <div className='bg-secondary' style={{
       backgroundImage: `url(${stripes})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      minHeight: '100vh', // Allow the background to stretch dynamically
-      width: '100%',
+      minHeight: '100vh',
+      minWidth: '100%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       position: 'relative',
-      flexDirection: 'column'}}
-    >
+      flexDirection: 'column'
+    }}>
       <Link to="/register" style={{
         position: 'absolute',
         top: '20px',
@@ -83,7 +83,7 @@ const Workout = () => {
           <div className="text">Logout</div>
         </button>
       </Link>
-      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginBottom: '20px' }}>
+      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Weight-Training Tracker</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -127,6 +127,7 @@ const Workout = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index]}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
+                min='1'
               />
               <input 
                 type="number"
@@ -135,6 +136,7 @@ const Workout = () => {
                 className="form-control rounded-0"
                 value={formData.reps[index]}
                 onChange={(e) => handleRepChange(index, e.target.value)}
+                min='1'
               />
             </div>
           ))}
