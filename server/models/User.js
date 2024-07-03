@@ -11,8 +11,8 @@ const workoutSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    password: String
-    //workouts: [workoutSchema]
+    password: String,
+    workouts: [workoutSchema]
 })
 
 const userModel = mongoose.model("users",userSchema)
