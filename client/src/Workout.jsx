@@ -47,6 +47,12 @@ const Workout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here (e.g., send data to the server)
+    axios.post('http://localhost:3001/workout',{formData})
+    .then(result =>{console.log(result)
+      //todo to handle posts
+    })
+    .catch(error => {console.log(error)})
+
     console.log(formData);
   };
 
