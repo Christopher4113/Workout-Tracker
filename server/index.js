@@ -48,6 +48,9 @@ app.post('/register', (req, res) => {
     .catch(error => res.json(error));
 });
 
+
+
+
 app.listen(3001, () => {
     console.log("Server is running");
 });
