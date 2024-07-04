@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useState} from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import largeTriangles from './assets/large-triangles.svg'; // Import the SVG
 
 
-
 function Signup() {
-    const [name,setName] = useState()
-    const [email,setEmail] = useState()
-    const [password,setPassword] = useState()
-    const navigate = useNavigate()
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:3001/register',{name,email,password})
-        .then(result => {console.log(result)
-            navigate('/login');
+        e.preventDefault();
+        setError(""); // Clear previous errors
+
+        axios.post('http://localhost:3001/register', { name, email, password })
+        .then(result => {
+            if (result.data.error) {
+                setError(result.data.error);
+            } else {
+                console.log(result);
+                navigate('/login');
+            }
         })
-        .catch(error => console.log(error))
-    }
-    
+        .catch(error => {
+            console.log(error);
+            setError("An error occurred. Please try again.");
+        });
+    };
+
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100" style={{
             backgroundImage: `url(${largeTriangles})`,
@@ -30,13 +40,14 @@ function Signup() {
             <div className="bg-white p-3 rounded w-25">
                 <h2>Register</h2>
                 <form onSubmit={handleSubmit}>
+                    {error && <div className="alert alert-danger">{error}</div>}
                     <div className="mb-3">
                         <label htmlFor="name">
-                            <strong>Name</strong>
+                            <strong>Username</strong>
                         </label>
                         <input 
                          type="text"
-                         placeholder="Enter Name"
+                         placeholder="Enter Username"
                          autoComplete="off"
                          name="name"
                          className="form-control rounded-0"

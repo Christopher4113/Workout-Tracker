@@ -11,15 +11,15 @@ function App() {
    
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/register" />} />
-        <Route path="/register" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/Workout" element={<Workout />} />
-        <Route path="/Endurance" element={<Endurance />} />
-        <Route path="/Calorie" element={<Calorie />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Navigate to="/register" />} />
+          <Route path="/register" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/Workout" element={<Workout />} />
+          <Route path="/Endurance" element={<Endurance />} />
+          <Route path="/Calorie" element={<Calorie />} />
+        </Routes>
     </BrowserRouter>
   );
 }

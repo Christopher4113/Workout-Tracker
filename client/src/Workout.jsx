@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
+import axios from 'axios';
 
 const Workout = () => {
   const [formData, setFormData] = useState({
@@ -146,7 +147,7 @@ const Workout = () => {
               />
             </div>
           ))}
-          <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }}>
+          <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }} onClick={handleSubmit}>
             Submit
           </button>
           <button type="button" className="btn btn-danger w-100 rounded-0" style={{ backgroundColor: 'red', color: 'white', border: 'none' }} onClick={handleClear}>

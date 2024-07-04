@@ -43,10 +43,32 @@ app.post("/login", (req, res) => {
     });
 });
 app.post('/register', (req, res) => {
-    userModel.create(req.body)
-    .then(user => res.json(user))
+    const { name, email, password } = req.body;
+
+    // Check if the username already exists
+    userModel.findOne({ name: name })
+    .then(user => {
+        if (user) {
+            return res.json({ error: "Username already taken" });
+        } else {
+            // Check if the email already exists
+            userModel.findOne({ email: email })
+            .then(user => {
+                if (user) {
+                    return res.json({ error: "Email already registered" });
+                } else {
+                    // Create new user
+                    userModel.create({ name, email, password })
+                    .then(newUser => res.json(newUser))
+                    .catch(error => res.json(error));
+                }
+            })
+            .catch(error => res.json(error));
+        }
+    })
     .catch(error => res.json(error));
 });
+
 
 
 

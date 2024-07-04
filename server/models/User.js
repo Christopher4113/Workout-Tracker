@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 
+
 const workoutSchema = new mongoose.Schema({
     workout: String,
     sets: Number,
@@ -14,6 +15,8 @@ const userSchema = new mongoose.Schema({
     password: String,
     workouts: [workoutSchema]
 })
+
+
 
 const userModel = mongoose.model("users",userSchema)
 
