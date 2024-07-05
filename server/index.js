@@ -3,13 +3,14 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const userModel = require("./models/User");
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Log the environment variable to check if it's being loaded
+const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
+
 console.log('MongoDB URI:', process.env.MONGO_URI);
 
 mongoose.connect(process.env.MONGO_URI)
@@ -23,42 +24,44 @@ app.post("/login", (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.json("Email and password are required");
+        return res.json({ error: "Email and password are required" });
     }
 
     userModel.findOne({ email: email })
     .then(user => {
         if (user) {
             if (user.password === password) {
-                res.json("Success");
+                const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
+                res.json({ message: "Success", token: token });
             } else {
-                res.json("The password was incorrect");
+                res.json({ error: "The password was incorrect" });
             }
         } else {
-            res.json("No email was registered");
+            res.json({ error: "No email was registered" });
         }
     })
     .catch(error => {
         console.log(error);
-        res.status(500).json("An error occurred. Please try again.");
+        res.status(500).json({ error: "An error occurred. Please try again." });
     });
 });
+
 app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
 
-    // Check if the username already exists
     userModel.findOne({ name: name })
     .then(user => {
         if (user) {
             return res.json({ error: "Username already taken" });
         } else {
-            // Check if the email already exists
             userModel.findOne({ email: email })
             .then(user => {
                 if (user) {
                     return res.json({ error: "Email already registered" });
                 } else {
-                    // Create new user
                     userModel.create({ name, email, password })
                     .then(newUser => res.json(newUser))
                     .catch(error => res.json(error));
@@ -70,9 +73,16 @@ app.post('/register', (req, res) => {
     .catch(error => res.json(error));
 });
 
+const authenticateToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token) return res.status(401).json({ error: "Access denied" });
 
-
-
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).json({ error: "Invalid token" });
+        req.user = user;
+        next();
+    });
+};
 
 app.listen(3001, () => {
     console.log("Server is running");

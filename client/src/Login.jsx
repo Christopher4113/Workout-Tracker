@@ -1,14 +1,13 @@
-import React from 'react';
-import { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import largeTriangles from './assets/large-triangles.svg'; // Import the SVG
+import largeTriangles from './assets/large-triangles.svg';
 
 function Login() {
-    const [email,setEmail] = useState()
-    const [password,setPassword] = useState()
-    const navigate = useNavigate()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,11 +17,11 @@ function Login() {
         }
         axios.post('http://localhost:3001/login', { email, password })
         .then(result => {
-            console.log(result);
-            if (result.data === "Success") {
+            if (result.data.message === "Success") {
+                localStorage.setItem('token', result.data.token);
                 navigate('/home');
             } else {
-                setError(result.data);
+                setError(result.data.error);
             }
         })
         .catch(error => {
@@ -30,16 +29,17 @@ function Login() {
             setError("An error occurred. Please try again.");
         });
     };
-    
+
     return (
-        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100" style= {{
+        <div className="d-flex justify-content-center align-items-center bg-secondary vh-100" style={{
             backgroundImage: `url(${largeTriangles})`,
-            backgroundSize: 'cover', 
+            backgroundSize: 'cover',
             backgroundPosition: 'center'
         }}>
             <div className="bg-white p-3 rounded w-25">
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
+                    {error && <div className="alert alert-danger">{error}</div>}
                     <div className="mb-3">
                         <label htmlFor="email">
                             <strong>Email</strong>
@@ -79,4 +79,4 @@ function Login() {
     );
 }
 
-export default Login
+export default Login;
