@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
@@ -7,7 +7,7 @@ import axios from 'axios';
 const Workout = () => {
   const [formData, setFormData] = useState({
     workout: '',
-    sets: '',
+    sets: 1,
     weights: [''],
     reps: ['']
   });
@@ -18,6 +18,8 @@ const Workout = () => {
       const sets = Math.max(1, parseInt(value, 10)); // Ensure the minimum value for sets is 1
       const weights = formData.weights.slice(0, sets); // Trim weights array if sets are reduced
       const reps = formData.reps.slice(0, sets); // Trim reps array if sets are reduced
+      while (weights.length < sets) weights.push(''); // Add empty entries if sets are increased
+      while (reps.length < sets) reps.push(''); // Add empty entries if sets are increased
       setFormData({ ...formData, sets, weights, reps });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -39,7 +41,7 @@ const Workout = () => {
   const handleClear = () => {
     setFormData({
       workout: '',
-      sets: '',
+      sets: 1,
       weights: [''],
       reps: ['']
     });
@@ -47,25 +49,19 @@ const Workout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here (e.g., send data to the server)
-    axios.post('http://localhost:3001/workout',{formData})
-    .then(result =>{console.log(result)
-      //todo to handle posts
-    })
-    .catch(error => {console.log(error)})
+    axios.post('http://localhost:3001/workout', { formData })
+      .then(result => { console.log(result) })
+      .catch(error => { console.log(error) });
 
     console.log(formData);
   };
 
-
-
   return (
-    <div className='bg-secondary' style={{
+    <div className='.bg-secondary' style={{
       backgroundImage: `url(${stripes})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       minHeight: '100vh',
-      minWidth: '100%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -90,14 +86,14 @@ const Workout = () => {
           <div className="text">Logout</div>
         </button>
       </Link>
-      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginBottom: '20px', paddingBottom: '20px' }}>
+      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '1350px',marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Weight-Training Tracker</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="workout">
               <strong>Workout</strong>
             </label>
-            <input 
+            <input
               type="text"
               placeholder="Enter a Workout"
               autoComplete="off"
@@ -111,7 +107,7 @@ const Workout = () => {
             <label htmlFor="sets">
               <strong>Sets</strong>
             </label>
-            <input 
+            <input
               type="number"
               placeholder="Enter Number of Sets"
               autoComplete="off"
@@ -127,7 +123,7 @@ const Workout = () => {
               <label>
                 <strong>Set {index + 1}</strong>
               </label>
-              <input 
+              <input
                 type="number"
                 placeholder={`Weight for Set ${index + 1}`}
                 autoComplete="off"
@@ -136,7 +132,7 @@ const Workout = () => {
                 onChange={(e) => handleWeightChange(index, e.target.value)}
                 min='1'
               />
-              <input 
+              <input
                 type="number"
                 placeholder={`Reps for Set ${index + 1}`}
                 autoComplete="off"
@@ -147,7 +143,7 @@ const Workout = () => {
               />
             </div>
           ))}
-          <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }} onClick={handleSubmit}>
+          <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }}>
             Submit
           </button>
           <button type="button" className="btn btn-danger w-100 rounded-0" style={{ backgroundColor: 'red', color: 'white', border: 'none' }} onClick={handleClear}>
