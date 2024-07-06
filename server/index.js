@@ -4,6 +4,7 @@ const cors = require("cors");
 const userModel = require("./models/User");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const workoutRouter = require('./controller/workoutController');
 
 const app = express();
 app.use(express.json());
@@ -83,6 +84,7 @@ const authenticateToken = (req, res, next) => {
         next();
     });
 };
+app.use('./workout',authenticateToken,workoutRouter);
 
 app.listen(3001, () => {
     console.log("Server is running");
