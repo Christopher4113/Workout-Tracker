@@ -75,17 +75,22 @@ app.post('/register', (req, res) => {
 });
 
 const authenticateToken = (req, res, next) => {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(401).json({ error: "Access denied" });
-
-  jwt.verify(token.split(' ')[1], SECRET_KEY, (err, user) => { // Split the 'Bearer' part from the token
-    if (err) return res.status(403).json({ error: "Invalid token" });
-    req.user = user;
-    next();
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.status(401).json({ error: "Access denied" });
+  
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) return res.status(403).json({ error: "Invalid token" });
+      req.user = user;
+      next();
+    });
+  };
+  
+  // Apply the middleware to routes that require authentication
+  app.post('/workout', authenticateToken, async (req, res) => {
+    const { workout, sets, weights, reps } = req.body.formData;
+    // Proceed with workout handling...
   });
-};
-
-app.use('/workout', authenticateToken, workoutRouter);
 
 app.listen(3001, () => {
   console.log("Server is running");

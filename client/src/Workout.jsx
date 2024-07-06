@@ -49,9 +49,16 @@ const Workout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/workout', { formData })
-      .then(result => { console.log(result) })
-      .catch(error => { console.log(error) });
+
+    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+
+    axios.post('http://localhost:3001/workout', { formData }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(result => { console.log(result) })
+    .catch(error => { console.log(error) });
 
     console.log(formData);
   };
