@@ -87,10 +87,7 @@ const authenticateToken = (req, res, next) => {
   };
   
   // Apply the middleware to routes that require authentication
-  app.post('/workout', authenticateToken, async (req, res) => {
-    const { workout, sets, weights, reps } = req.body.formData;
-    // Proceed with workout handling...
-  });
+app.use('/workout', authenticateToken, workoutRouter);
 
 app.listen(3001, () => {
   console.log("Server is running");

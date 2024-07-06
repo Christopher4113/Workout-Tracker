@@ -64,7 +64,7 @@ const Workout = () => {
   };
 
   return (
-    <div className='.bg-secondary' style={{
+    <div className="bg-secondary" style={{
       backgroundImage: `url(${stripes})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -93,6 +93,7 @@ const Workout = () => {
           <div className="text">Logout</div>
         </button>
       </Link>
+
       <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '1350px',marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Weight-Training Tracker</h2>
         <form onSubmit={handleSubmit}>
