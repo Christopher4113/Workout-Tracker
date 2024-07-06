@@ -28,13 +28,13 @@ const Workout = () => {
 
   const handleWeightChange = (index, value) => {
     const newWeights = [...formData.weights];
-    newWeights[index] = value;
+    newWeights[index] = value === '' ? '' : parseInt(value, 10);
     setFormData({ ...formData, weights: newWeights });
   };
 
   const handleRepChange = (index, value) => {
     const newReps = [...formData.reps];
-    newReps[index] = value;
+    newReps[index] = value === '' ? '' : parseInt(value, 10);
     setFormData({ ...formData, reps: newReps });
   };
 
@@ -128,7 +128,7 @@ const Workout = () => {
                 placeholder={`Weight for Set ${index + 1}`}
                 autoComplete="off"
                 className="form-control rounded-0 mb-2"
-                value={formData.weights[index]}
+                value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
                 min='1'
               />
@@ -137,7 +137,7 @@ const Workout = () => {
                 placeholder={`Reps for Set ${index + 1}`}
                 autoComplete="off"
                 className="form-control rounded-0"
-                value={formData.reps[index]}
+                value={formData.reps[index] || ''}
                 onChange={(e) => handleRepChange(index, e.target.value)}
                 min='1'
               />
@@ -152,7 +152,7 @@ const Workout = () => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Workout;
