@@ -23,9 +23,7 @@ router.post('/', async (req, res) => {
       user.workouts.push(newWorkout);
       await user.save();
 
-      //check if database update
-      console.log(user);
-  
+      
       res.json(user);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred. Please try again.' });
