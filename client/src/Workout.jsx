@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
@@ -12,14 +12,31 @@ const Workout = () => {
     reps: ['']
   });
 
+  const [workouts, setWorkouts] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    axios.get('http://localhost:3001/workout', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      setWorkouts(response.data.workouts);
+    })
+    .catch(error => console.log(error));
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'sets') {
-      const sets = Math.max(1, parseInt(value, 10)); // Ensure the minimum value for sets is 1
-      const weights = formData.weights.slice(0, sets); // Trim weights array if sets are reduced
-      const reps = formData.reps.slice(0, sets); // Trim reps array if sets are reduced
-      while (weights.length < sets) weights.push(''); // Add empty entries if sets are increased
-      while (reps.length < sets) reps.push(''); // Add empty entries if sets are increased
+      const sets = Math.max(1, parseInt(value, 10));
+      const weights = formData.weights.slice(0, sets);
+      const reps = formData.reps.slice(0, sets);
+      while (weights.length < sets) weights.push('');
+      while (reps.length < sets) reps.push('');
       setFormData({ ...formData, sets, weights, reps });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -45,23 +62,61 @@ const Workout = () => {
       weights: [''],
       reps: ['']
     });
+    setEditMode(false);
+    setEditId(null);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
 
-    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+    if (editMode) {
+      axios.put(`http://localhost:3001/workout/${editId}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        setWorkouts(workouts.map(workout => workout._id === editId ? response.data.workout : workout));
+        handleClear();
+      })
+      .catch(error => console.log(error));
+    } else {
+      axios.post('http://localhost:3001/workout', { formData }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        setWorkouts([...workouts, response.data.workout]);
+        handleClear();
+      })
+      .catch(error => console.log(error));
+    }
+  };
 
-    axios.post('http://localhost:3001/workout', { formData }, {
+  const handleEdit = (workout) => {
+    setFormData({
+      workout: workout.workout,
+      sets: workout.sets,
+      weights: workout.weights,
+      reps: workout.reps
+    });
+    setEditMode(true);
+    setEditId(workout._id);
+  };
+
+  const handleDelete = (id) => {
+    const token = localStorage.getItem('token');
+    axios.delete(`http://localhost:3001/workout/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(result => { console.log(result) })
-    .catch(error => { console.log(error) });
-    handleClear();
-
-    console.log(formData);
+    .then(response => {
+      setWorkouts(workouts.filter(workout => workout._id !== id));
+    })
+    .catch(error => console.log(error));
   };
 
   return (
@@ -81,7 +136,7 @@ const Workout = () => {
         top: '20px',
         right: '20px',
         zIndex: '10',
-        textDecoration: 'none' // Ensure no default underline for link
+        textDecoration: 'none'
       }}>
         <button className="Btn">
           <div className="sign">
@@ -95,7 +150,7 @@ const Workout = () => {
         </button>
       </Link>
 
-      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '1350px',marginBottom: '20px', paddingBottom: '20px' }}>
+      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '1350px', marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Weight-Training Tracker</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -139,7 +194,7 @@ const Workout = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min='0'
+                min="0"
               />
               <input
                 type="number"
@@ -148,17 +203,31 @@ const Workout = () => {
                 className="form-control rounded-0"
                 value={formData.reps[index] || ''}
                 onChange={(e) => handleRepChange(index, e.target.value)}
-                min='1'
+                min="1"
               />
             </div>
           ))}
           <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }}>
-            Submit
+            {editMode ? 'Update' : 'Submit'}
           </button>
           <button type="button" className="btn btn-danger w-100 rounded-0" style={{ backgroundColor: 'red', color: 'white', border: 'none' }} onClick={handleClear}>
             Clear
           </button>
         </form>
+      </div>
+
+      <div className="workout-list" style={{ marginTop: '20px' }}>
+        <h3>Workouts</h3>
+        {workouts.map((workout, index) => (
+          <div key={index} className="workout-item">
+            <h4>{workout.workout}</h4>
+            <p>Sets: {workout.sets}</p>
+            <p>Weights: {workout.weights.join(', ')}</p>
+            <p>Reps: {workout.reps.join(', ')}</p>
+            <button onClick={() => handleEdit(workout)}>Edit</button>
+            <button onClick={() => handleDelete(workout._id)}>Delete</button>
+          </div>
+        ))}
       </div>
     </div>
   );

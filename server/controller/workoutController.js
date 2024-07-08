@@ -24,10 +24,71 @@ router.post('/', async (req, res) => {
       await user.save();
 
       
-      res.json(user);
+      res.json({workout: newWorkout});
     } catch (error) {
       res.status(500).json({ error: 'An error occurred. Please try again.' });
     }
   });
-  
+router.get('/',async (req,res) => {
+    const userId = req.user.userId;
+    try {
+      const user = await userModel.findById(userId);
+      if (!user) {
+        return res.status(404).json({error:'User not found'})
+      }
+      res.json({wrokouts: user.workouts});
+    } catch(error) {
+      res.status(500).json({error: 'An error occurred. Please try again.'})
+    }
+});
+router.put('/:workoutId', async (req, res) => {
+  const userId = req.user.userId; // The user ID should be extracted from the JWT token
+  const workoutId = req.params.workoutId;
+  const { workout, sets, weights, reps } = req.body;
+
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const workoutToUpdate = user.workouts.id(workoutId);
+    if (!workoutToUpdate) {
+      return res.status(404).json({ error: 'Workout not found' });
+    }
+
+    workoutToUpdate.workout = workout;
+    workoutToUpdate.sets = sets;
+    workoutToUpdate.weights = weights;
+    workoutToUpdate.reps = reps;
+
+    await user.save();
+    res.json({ workout: workoutToUpdate });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred. Please try again.' });
+  }
+});
+router.delete('/:workoutId', async (req, res) => {
+  const userId = req.user.userId; // The user ID should be extracted from the JWT token
+  const workoutId = req.params.workoutId;
+
+  try {
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const workoutToDelete = user.workouts.id(workoutId);
+    if (!workoutToDelete) {
+      return res.status(404).json({ error: 'Workout not found' });
+    }
+
+    workoutToDelete.remove();
+    await user.save();
+    res.json({ message: 'Workout deleted' });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred. Please try again.' });
+  }
+});
+
   module.exports = router;
