@@ -77,8 +77,8 @@ const Workout = () => {
         }
       })
       .then(response => {
-        setWorkouts(workouts.map(workout => workout._id === editId ? response.data.workout : workout));
         handleClear();
+        setWorkouts(workouts.map(workout => workout._id === editId ? response.data.workout : workout));
       })
       .catch(error => console.log(error));
     } else {
@@ -88,8 +88,8 @@ const Workout = () => {
         }
       })
       .then(response => {
-        setWorkouts([...workouts, response.data.workout]);
         handleClear();
+        setWorkouts([...workouts, response.data.workout]);
       })
       .catch(error => console.log(error));
     }
