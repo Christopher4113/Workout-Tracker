@@ -7,9 +7,9 @@ import PrivateRoute from './PrivateRoute';
 import Workout from './Workout'; // Import Workout component
 import Endurance from './Endurance'; // Import Endurance component
 import Calorie from './Calorie'; // Import Calorie component
+import PostsWT from './postsWT'; // Import corrected
 
 function App() {
-   
   return (
     <BrowserRouter>
         <Routes>
@@ -20,6 +20,7 @@ function App() {
           <Route path="/Workout" element={<Workout />} />
           <Route path="/Endurance" element={<Endurance />} />
           <Route path="/Calorie" element={<Calorie />} />
+          <Route path="/postsWT" element={<PostsWT />} /> {/* Corrected import */}
         </Routes>
     </BrowserRouter>
   );

@@ -128,35 +128,3 @@
 }
 
 
-/* Workout posts */
-.workout-list-container {
-  width: 80%;
-  max-width: 800px; /* Adjust as needed */
-  margin: 20px auto; /* Center horizontally */
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-}
-
-.workout-list {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px; /* Adjust margin between form and list */
-}
-
-.workout-item {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-.workout-item h4 {
-  margin-bottom: 5px;
-}
-
-.workout-item p {
-  margin: 0;
-}
-
-.workout-item button {
-  margin-top: 5px;
-  cursor: pointer;
-}
