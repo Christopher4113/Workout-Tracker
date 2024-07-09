@@ -22,7 +22,7 @@ function App() {
           <Route path="/Endurance" element={<Endurance />} />
           <Route path="/Calorie" element={<Calorie />} />
           <Route path="/postsWT" element={<PostsWT />} /> {/* Corrected import */}
-          <Route path="/updateWT" element={<UpdateWT />} /> {/* Corrected import */}
+          <Route path="/updateWT/:id" element={<UpdateWT />} /> {/* Corrected import */}
         </Routes>
     </BrowserRouter>
   );

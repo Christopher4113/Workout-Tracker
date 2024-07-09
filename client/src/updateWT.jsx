@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
 
 const UpdateWT = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     workout: '',
@@ -13,10 +14,28 @@ const UpdateWT = () => {
     reps: ['']
   });
 
+  useEffect(() => {
+    axios.get(`http://localhost:3001/workout/getWorkout/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(result => {
+        const data = result.data;
+        setFormData({
+          workout: data.workout,
+          sets: data.sets,
+          weights: data.weights.map(w => w.toString()),
+          reps: data.reps.map(r => r.toString())
+        });
+      })
+      .catch(error => console.log(error));
+  }, [id]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'sets') {
-      const sets = Math.max(1, parseInt(value, 10)); // Ensure the minimum value for sets is 1
+      const sets = Math.max(1, parseInt(value, 10) || 1); // Ensure the minimum value for sets is 1
       const weights = formData.weights.slice(0, sets); // Trim weights array if sets are reduced
       const reps = formData.reps.slice(0, sets); // Trim reps array if sets are reduced
       while (weights.length < sets) weights.push(''); // Add empty entries if sets are increased
@@ -29,13 +48,13 @@ const UpdateWT = () => {
 
   const handleWeightChange = (index, value) => {
     const newWeights = [...formData.weights];
-    newWeights[index] = value === '' ? '' : parseInt(value, 10);
+    newWeights[index] = value;
     setFormData({ ...formData, weights: newWeights });
   };
 
   const handleRepChange = (index, value) => {
     const newReps = [...formData.reps];
-    newReps[index] = value === '' ? '' : parseInt(value, 10);
+    newReps[index] = value;
     setFormData({ ...formData, reps: newReps });
   };
 
@@ -69,18 +88,16 @@ const UpdateWT = () => {
 
     const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
 
-    axios.post('http://localhost:3001/workout', { formData }, {
+    axios.put(`http://localhost:3001/workout/updateWorkout/${id}`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(result => { console.log(result) })
-    .catch(error => { console.log(error) });
-
-    handleClear();
-    navigate('/postsWT');
-
-    console.log(formData);
+    .then(result => {
+      console.log(result);
+      navigate('/postsWT');
+    })
+    .catch(error => console.log(error));
   };
 
   return (

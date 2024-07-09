@@ -17,6 +17,19 @@ const PostsWT = () => {
       .catch(error => console.log(error));
   }, []);
 
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3001/workout/deleteWorkout/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(result => {
+      console.log(result);
+      setInfo(info.filter(item => item._id !== id));
+    })
+    .catch(error => console.log(error));
+  }
+
   return (
     <div className='d-flex justify-content-center align-items-center bg-secondary vh-100' style={{
         backgroundImage: `url(${stripes})`,
@@ -68,8 +81,8 @@ const PostsWT = () => {
                                 <td>{item.weights.join(', ')}</td>
                                 <td>{item.reps.join(', ')}</td>
                                 <td>
-                                    <Link to='/updateWT' className='btn btn-success btn-sm'>Edit</Link>
-                                    <button className="btn btn-danger btn-sm ml-2">Delete</button>
+                                    <Link to={`/updateWT/${item._id}`} className='btn btn-success btn-sm'>Edit</Link>
+                                    <button className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(item._id)}>Delete</button>
                                 </td>
                             </tr>
                         ))
