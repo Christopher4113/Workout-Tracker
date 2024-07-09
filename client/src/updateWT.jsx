@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
 
-const Workout = () => {
+const UpdateWT = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     workout: '',
@@ -96,7 +96,7 @@ const Workout = () => {
       flexDirection: 'column'
     }}>
       <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '680px', marginBottom: '20px', paddingBottom: '20px' }}>
-        <h2>Add</h2>
+        <h2>Edit</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="workout">
@@ -139,7 +139,7 @@ const Workout = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min="0"
+                min='0'
               />
               <input
                 type="number"
@@ -148,7 +148,7 @@ const Workout = () => {
                 className="form-control rounded-0"
                 value={formData.reps[index] || ''}
                 onChange={(e) => handleRepChange(index, e.target.value)}
-                min="1"
+                min='1'
               />
             </div>
           ))}
@@ -164,4 +164,4 @@ const Workout = () => {
   );
 };
 
-export default Workout;
+export default UpdateWT;

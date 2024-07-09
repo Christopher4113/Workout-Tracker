@@ -8,6 +8,7 @@ import Workout from './Workout'; // Import Workout component
 import Endurance from './Endurance'; // Import Endurance component
 import Calorie from './Calorie'; // Import Calorie component
 import PostsWT from './postsWT'; // Import corrected
+import UpdateWT from './updateWT.jsx';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Endurance" element={<Endurance />} />
           <Route path="/Calorie" element={<Calorie />} />
           <Route path="/postsWT" element={<PostsWT />} /> {/* Corrected import */}
+          <Route path="/updateWT" element={<UpdateWT />} /> {/* Corrected import */}
         </Routes>
     </BrowserRouter>
   );

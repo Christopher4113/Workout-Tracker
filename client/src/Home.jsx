@@ -88,7 +88,7 @@ function Home() {
                 <div style={boxStyle}>
                     <img src={dumbell} alt="Dumbbell" style={imgStyle} />
                     <p style={textStyle}>Weight Lifting Tracker</p>
-                    <Link to="/Workout" style={{ ...linkStyle, ...{ color: 'white', textDecoration: 'none' } }} className="button">Explore</Link>
+                    <Link to="/postsWT" style={{ ...linkStyle, ...{ color: 'white', textDecoration: 'none' } }} className="button">Explore</Link>
                 </div>
                 <div style={boxStyle}>
                     <img src={running} alt="Running" style={imgStyle} />

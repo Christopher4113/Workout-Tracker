@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
 
 const PostsWT = () => {
-  const [info, setInfo] = useState([
-    { workout: "Bench Press", sets: 3, weights: [160, 160, 135], reps: [8, 6, 10] }
-  ]);
+  const [info, setInfo] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/workout', { // Correct the URL here
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(result => setInfo(result.data))
+      .catch(error => console.log(error));
+  }, []);
 
   return (
     <div className='d-flex justify-content-center align-items-center bg-secondary vh-100' style={{
@@ -60,7 +68,7 @@ const PostsWT = () => {
                                 <td>{item.weights.join(', ')}</td>
                                 <td>{item.reps.join(', ')}</td>
                                 <td>
-                                    <Link to='/Workout' className='btn btn-success btn-sm'>Edit</Link>
+                                    <Link to='/updateWT' className='btn btn-success btn-sm'>Edit</Link>
                                     <button className="btn btn-danger btn-sm ml-2">Delete</button>
                                 </td>
                             </tr>
