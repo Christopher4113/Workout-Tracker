@@ -8,12 +8,18 @@ const workoutSchema = new mongoose.Schema({
     weights: [Number],
     reps: [Number]
 });
+const enduranceSchema = new mongoose.Schema({
+    workout: String,
+    duration: Number,
+    distance: Number
+});
 
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    workouts: [workoutSchema]
+    workouts: [workoutSchema],
+    endurances: [enduranceSchema]
 })
 
 
