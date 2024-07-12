@@ -6,6 +6,7 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
+const calorieRouter = require('./controller/calorieController');
 
 const app = express();
 app.use(express.json());
@@ -90,7 +91,9 @@ const authenticateToken = (req, res, next) => {
   // Apply the middleware to routes that require authentication
 app.use('/workout', authenticateToken, workoutRouter);
 
-app.use('/endurance',authenticateToken,enduranceRouter)
+app.use('/endurance',authenticateToken,enduranceRouter);
+
+app.use('/calorie',authenticateToken,calorieRouter);
 
 app.listen(3001, () => {
   console.log("Server is running");

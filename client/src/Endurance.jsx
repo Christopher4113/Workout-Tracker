@@ -92,7 +92,7 @@ const Endurance = () => {
             <table className='table table-borded rounded'>
                 <thead className='thead-dark'>
                     <tr>
-                        <th colSpan="6">
+                        <th colSpan="5">
                             <Link to='/createEndurance' className='btn btn-success'>Add +</Link>
                         </th>
                     </tr>

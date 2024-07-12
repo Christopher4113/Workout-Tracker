@@ -15,12 +15,18 @@ const enduranceSchema = new mongoose.Schema({
     distance: Number
 });
 
+const calorieSchema = new mongoose.Schema({
+    date: String,
+    calories:Number
+})
+
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
     workouts: [workoutSchema],
-    endurances: [enduranceSchema]
+    endurances: [enduranceSchema],
+    calories: [calorieSchema]
 });
 
 const userModel = mongoose.model("users", userSchema);
