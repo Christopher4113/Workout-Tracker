@@ -26,7 +26,7 @@ function App() {
           <Route path="/postsWT" element={<PostsWT />} /> 
           <Route path="/updateWT/:id" element={<UpdateWT />} /> 
           <Route path="/createEndurance" element={<CreateEndurance />} /> 
-          <Route path="/updateEndurance" element={<UpdateEndurance />} /> 
+          <Route path="/updateEndurance/:id" element={<UpdateEndurance />} /> 
         </Routes>
     </BrowserRouter>
   );

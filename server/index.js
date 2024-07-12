@@ -90,6 +90,8 @@ const authenticateToken = (req, res, next) => {
   // Apply the middleware to routes that require authentication
 app.use('/workout', authenticateToken, workoutRouter);
 
+app.use('/endurance',authenticateToken,enduranceRouter)
+
 app.listen(3001, () => {
   console.log("Server is running");
 });
