@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
-
-
 const workoutSchema = new mongoose.Schema({
+    date:String,
     workout: String,
     sets: Number,
     weights: [Number],
     reps: [Number]
 });
+
 const enduranceSchema = new mongoose.Schema({
     workout: String,
     duration: Number,
@@ -20,11 +20,8 @@ const userSchema = new mongoose.Schema({
     password: String,
     workouts: [workoutSchema],
     endurances: [enduranceSchema]
-})
+});
 
+const userModel = mongoose.model("users", userSchema);
 
-
-const userModel = mongoose.model("users",userSchema)
-
-module.exports = userModel
-
+module.exports = userModel;

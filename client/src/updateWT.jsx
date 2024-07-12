@@ -8,11 +8,14 @@ const UpdateWT = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    date: '',
     workout: '',
     sets: 1,
     weights: [''],
     reps: ['']
   });
+
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   useEffect(() => {
     axios.get(`http://localhost:3001/workout/getWorkout/${id}`, {
@@ -23,6 +26,7 @@ const UpdateWT = () => {
       .then(result => {
         const data = result.data;
         setFormData({
+          date: data.date,
           workout: data.workout,
           sets: data.sets,
           weights: data.weights.map(w => w.toString()),
@@ -60,6 +64,7 @@ const UpdateWT = () => {
 
   const handleClear = () => {
     setFormData({
+      date: '',
       workout: '',
       sets: 1,
       weights: [''],
@@ -70,7 +75,13 @@ const UpdateWT = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { workout, sets, weights, reps } = formData;
+    const { date, workout, sets, weights, reps } = formData;
+
+    // Check if date is not empty
+    if (!date) {
+      alert("Please select a date.");
+      return;
+    }
 
     // Check if workout is not empty
     if (!workout.trim()) {
@@ -116,6 +127,22 @@ const UpdateWT = () => {
         <h2>Edit</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
+            <label htmlFor="date">
+              <strong>Date</strong>
+            </label>
+            <select
+              name="date"
+              className="form-control rounded-0"
+              value={formData.date}
+              onChange={handleInputChange}
+            >
+              <option value="">Select a day</option>
+              {daysOfWeek.map(day => (
+                <option key={day} value={day}>{day}</option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-3">
             <label htmlFor="workout">
               <strong>Workout</strong>
             </label>
@@ -156,7 +183,7 @@ const UpdateWT = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min='0'
+                min="0"
               />
               <input
                 type="number"
@@ -165,7 +192,7 @@ const UpdateWT = () => {
                 className="form-control rounded-0"
                 value={formData.reps[index] || ''}
                 onChange={(e) => handleRepChange(index, e.target.value)}
-                min='1'
+                min="1"
               />
             </div>
           ))}

@@ -7,11 +7,14 @@ import axios from 'axios';
 const Workout = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    date: '',
     workout: '',
     sets: 1,
     weights: [''],
     reps: ['']
   });
+
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +44,7 @@ const Workout = () => {
 
   const handleClear = () => {
     setFormData({
+      date: '',
       workout: '',
       sets: 1,
       weights: [''],
@@ -51,7 +55,13 @@ const Workout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { workout, sets, weights, reps } = formData;
+    const { date, workout, sets, weights, reps } = formData;
+
+    // Check if date is not empty
+    if (!date) {
+      alert("Please select a date.");
+      return;
+    }
 
     // Check if workout is not empty
     if (!workout.trim()) {
@@ -98,6 +108,22 @@ const Workout = () => {
       <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '680px', marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Add</h2>
         <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="date">
+              <strong>Date</strong>
+            </label>
+            <select
+              name="date"
+              className="form-control rounded-0"
+              value={formData.date}
+              onChange={handleInputChange}
+            >
+              <option value="">Select a day</option>
+              {daysOfWeek.map(day => (
+                <option key={day} value={day}>{day}</option>
+              ))}
+            </select>
+          </div>
           <div className="mb-3">
             <label htmlFor="workout">
               <strong>Workout</strong>

@@ -8,7 +8,7 @@ const PostsWT = () => {
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/workout', { // Correct the URL here
+    axios.get('http://localhost:3001/workout', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -78,11 +78,12 @@ const PostsWT = () => {
             <table className='table table-bordered rounded'>
                 <thead className="thead-dark">
                     <tr>
-                        <th colSpan="5">
+                        <th colSpan="6">
                             <Link to='/Workout' className='btn btn-success'>Add +</Link>
                         </th>
                     </tr>
                     <tr>
+                        <th>Date</th>
                         <th>Workout</th>
                         <th>Sets</th>
                         <th>Weights</th>
@@ -94,6 +95,7 @@ const PostsWT = () => {
                     {
                         info.map((item, index) => (
                             <tr key={index}>
+                                <td>{item.date}</td>
                                 <td>{item.workout}</td>
                                 <td className="text-center">{item.sets}</td>
                                 <td>{item.weights.join(', ')}</td>
