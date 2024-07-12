@@ -5,6 +5,7 @@ const userModel = require("./models/User");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const workoutRouter = require('./controller/workoutController');
+const enduranceRouter = require('./controller/enduranceController');
 
 const app = express();
 app.use(express.json());

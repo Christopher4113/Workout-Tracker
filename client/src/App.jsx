@@ -9,6 +9,8 @@ import Endurance from './Endurance'; // Import Endurance component
 import Calorie from './Calorie'; // Import Calorie component
 import PostsWT from './postsWT'; // Import corrected
 import UpdateWT from './updateWT.jsx';
+import CreateEndurance from './createEndurance.jsx';
+import UpdateEndurance from './updateEndurance.jsx';
 
 function App() {
   return (
@@ -21,8 +23,10 @@ function App() {
           <Route path="/Workout" element={<Workout />} />
           <Route path="/Endurance" element={<Endurance />} />
           <Route path="/Calorie" element={<Calorie />} />
-          <Route path="/postsWT" element={<PostsWT />} /> {/* Corrected import */}
-          <Route path="/updateWT/:id" element={<UpdateWT />} /> {/* Corrected import */}
+          <Route path="/postsWT" element={<PostsWT />} /> 
+          <Route path="/updateWT/:id" element={<UpdateWT />} /> 
+          <Route path="/createEndurance" element={<CreateEndurance />} /> 
+          <Route path="/updateEndurance" element={<UpdateEndurance />} /> 
         </Routes>
     </BrowserRouter>
   );
