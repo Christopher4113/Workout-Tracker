@@ -7,13 +7,30 @@ import axios from 'axios';
 const PostsWT = () => {
   const [info, setInfo] = useState([]);
 
+  const daysOrder = {
+    'Monday': 1,
+    'Tuesday': 2,
+    'Wednesday': 3,
+    'Thursday': 4,
+    'Friday': 5,
+    'Saturday': 6,
+    'Sunday': 7
+  };
+
   useEffect(() => {
     axios.get('http://localhost:3001/workout', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(result => setInfo(result.data))
+      .then(result => {
+        const sortedData = result.data.sort((a, b) => {
+          const dayA = a.date.split(', ')[0]; // assuming the date format is "Monday, Month Day, Year"
+          const dayB = b.date.split(', ')[0];
+          return daysOrder[dayA] - daysOrder[dayB];
+        });
+        setInfo(sortedData);
+      })
       .catch(error => console.log(error));
   }, []);
 

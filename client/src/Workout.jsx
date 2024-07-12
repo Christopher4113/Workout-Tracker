@@ -105,6 +105,15 @@ const Workout = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
+      <Link to="/postsWT" class="exit exit-1 hover-filled-slide-left" style={{
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        zIndex: '10',
+        textDecoration: 'none'
+      }}>
+        <span>Exit</span>
+      </Link>
       <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '680px', marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Add</h2>
         <form onSubmit={handleSubmit}>

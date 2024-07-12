@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, } from 'react';
+import { useNavigate, useParams,Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
@@ -123,6 +123,15 @@ const UpdateWT = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
+      <Link to="/postsWT" class="exit exit-1 hover-filled-slide-left" style={{
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        zIndex: '10',
+        textDecoration: 'none'
+      }}>
+        <span>Exit</span>
+      </Link>
       <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '680px', marginBottom: '20px', paddingBottom: '20px' }}>
         <h2>Edit</h2>
         <form onSubmit={handleSubmit}>
