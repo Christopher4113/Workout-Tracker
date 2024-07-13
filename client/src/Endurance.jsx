@@ -1,58 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './endurance.css';
+import './endurance.css'; // Import the CSS file
 import endurance from './assets/endurance.jpg';
 
 const Endurance = () => {
-    const [info,setInfo] = useState([]);
+    const [info, setInfo] = useState([]);
 
     const daysOrder = {
         'Monday': 1,
         'Tuesday': 2,
         'Wednesday': 3,
         'Thursday': 4,
-        'Friday':5,
-        'Saturday':6,
-        'Sunday':7 
+        'Friday': 5,
+        'Saturday': 6,
+        'Sunday': 7 
     };
+
     useEffect(() => {
         axios.get('http://localhost:3001/endurance', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         })
-          .then(result => {
+        .then(result => {
             const sortedData = result.data.sort((a, b) => {
-              const dayA = a.date.split(', ')[0]; // assuming the date format is "Monday, Month Day, Year"
-              const dayB = b.date.split(', ')[0];
-              return daysOrder[dayA] - daysOrder[dayB];
+                const dayA = a.date.split(', ')[0]; // assuming the date format is "Monday, Month Day, Year"
+                const dayB = b.date.split(', ')[0];
+                return daysOrder[dayA] - daysOrder[dayB];
             });
             setInfo(sortedData);
-          })
-          .catch(error => console.log(error));
-      }, []);
+        })
+        .catch(error => console.log(error));
+    }, []);
+
     const handleDelete = (id) => {
         axios.delete(`http://localhost:3001/endurance/deleteWorkout/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
-            })
-            .then(result => {
+        })
+        .then(result => {
             console.log(result);
             setInfo(info.filter(item => item._id !== id));
-            })
-            .catch(error => console.log(error));
-        }
+        })
+        .catch(error => console.log(error));
+    }
+
     return (
-        <div className='d-flex justify-content-center align-items-center bg-secondary vh-100' style={{
-        backgroundImage: `url(${endurance})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        flexDirection: 'column',
-        position: 'relative'
+        <div className='bg-secondary' style={{
+            backgroundImage: `url(${endurance})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'relative',
+            flexDirection: 'column'
         }}>
-        <Link to="/register" style={{
+            <Link to="/register" style={{
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
@@ -69,8 +76,8 @@ const Endurance = () => {
                     </div>
                     <div className="text">Logout</div>
                 </button>
-        </Link>
-        <Link to="/home" className="no-underline" style={{
+            </Link>
+            <Link to="/home" className="no-underline" style={{
                 position: 'absolute', 
                 top: '20px',
                 left: '20px', 
@@ -87,44 +94,51 @@ const Endurance = () => {
                     </span>
                     <span className="custom-text">MENU</span>
                 </button>
-        </Link>
-        <div className='table-container mt-4'>
-            <table className='table table-borded rounded'>
-                <thead className='thead-dark'>
-                    <tr>
-                        <th colSpan="5">
-                            <Link to='/createEndurance' className='btn btn-success'>Add +</Link>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Date</th>
-                        <th>Workout</th>
-                        <th>Duration</th>
-                        <th>Distance</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        info.map((item,index) => (
-                            <tr key={index}>
-                                <td>{item.date}</td>
-                                <td>{item.workout}</td>
-                                <td>{item.duration}</td>
-                                <td>{item.distance}</td>
-                                <td>
-                                    <Link to={`/updateEndurance/${item._id}`} className='btn btn-success btn-sm'>Edit</Link>
-                                    <button className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(item._id)}>Delete</button>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-
-        </div>
+            </Link>
+            <div className="table-container mt-4" style={{
+                width: '80%',
+                maxWidth: '1000px',
+                margin: 'auto',
+                background: 'rgba(255, 255, 255, 0.8)', 
+                borderRadius: '8px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                padding: '20px'
+            }}>
+                <table className='table table-bordered rounded'>
+                    <thead className="thead-dark">
+                        <tr>
+                            <th colSpan="5">
+                                <Link to='/createEndurance' className='btn btn-success'>Add +</Link>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Workout</th>
+                            <th>Duration</th>
+                            <th>Distance</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            info.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.date}</td>
+                                    <td>{item.workout}</td>
+                                    <td>{item.duration}</td>
+                                    <td>{item.distance}</td>
+                                    <td>
+                                        <Link to={`/updateEndurance/${item._id}`} className='btn btn-success btn-sm'>Edit</Link>
+                                        <button className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(item._id)}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
 
-export default Endurance
+export default Endurance;

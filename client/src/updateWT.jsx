@@ -1,5 +1,5 @@
-import React, { useState, useEffect, } from 'react';
-import { useNavigate, useParams,Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
@@ -51,9 +51,12 @@ const UpdateWT = () => {
   };
 
   const handleWeightChange = (index, value) => {
+    const positiveFloatOrZero = /^\d*\.?\d*$/; // Regex to allow positive floats or zero
     const newWeights = [...formData.weights];
-    newWeights[index] = value;
-    setFormData({ ...formData, weights: newWeights });
+    if (value === '' || positiveFloatOrZero.test(value)) {
+      newWeights[index] = value;
+      setFormData({ ...formData, weights: newWeights });
+    }
   };
 
   const handleRepChange = (index, value) => {
@@ -104,11 +107,11 @@ const UpdateWT = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    .then(result => {
-      console.log(result);
-      navigate('/postsWT');
-    })
-    .catch(error => console.log(error));
+      .then(result => {
+        console.log(result);
+        navigate('/postsWT');
+      })
+      .catch(error => console.log(error));
   };
 
   return (
@@ -123,7 +126,7 @@ const UpdateWT = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
-      <Link to="/postsWT" class="exit exit-1 hover-filled-slide-left" style={{
+      <Link to="/postsWT" className="exit exit-1 hover-filled-slide-left" style={{
         position: 'absolute',
         top: '20px',
         left: '20px',
@@ -186,13 +189,12 @@ const UpdateWT = () => {
                 <strong>Set {index + 1}</strong>
               </label>
               <input
-                type="number"
+                type="text"
                 placeholder={`Weight for Set ${index + 1}`}
                 autoComplete="off"
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min="0"
               />
               <input
                 type="number"

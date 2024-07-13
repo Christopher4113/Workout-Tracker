@@ -31,9 +31,12 @@ const Workout = () => {
   };
 
   const handleWeightChange = (index, value) => {
-    const newWeights = [...formData.weights];
-    newWeights[index] = value === '' ? '' : parseInt(value, 10);
-    setFormData({ ...formData, weights: newWeights });
+    const positiveFloat = /^\d*\.?\d*$/; // Regex to allow positive floats
+    if (positiveFloat.test(value)) {
+      const newWeights = [...formData.weights];
+      newWeights[index] = value === '' ? '' : value;
+      setFormData({ ...formData, weights: newWeights });
+    }
   };
 
   const handleRepChange = (index, value) => {
@@ -105,7 +108,7 @@ const Workout = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
-      <Link to="/postsWT" class="exit exit-1 hover-filled-slide-left" style={{
+      <Link to="/postsWT" className="exit exit-1 hover-filled-slide-left" style={{
         position: 'absolute',
         top: '20px',
         left: '20px',
@@ -168,13 +171,12 @@ const Workout = () => {
                 <strong>Set {index + 1}</strong>
               </label>
               <input
-                type="number"
+                type="text"
                 placeholder={`Weight for Set ${index + 1}`}
                 autoComplete="off"
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min="0"
               />
               <input
                 type="number"
