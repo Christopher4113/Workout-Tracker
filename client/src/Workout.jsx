@@ -9,7 +9,7 @@ const Workout = () => {
   const [formData, setFormData] = useState({
     date: '',
     workout: '',
-    sets: 1,
+    sets: '',
     weights: [''],
     reps: ['']
   });
@@ -46,7 +46,7 @@ const Workout = () => {
     setFormData({
       date: '',
       workout: '',
-      sets: 1,
+      sets: '',
       weights: [''],
       reps: ['']
     });
@@ -174,7 +174,7 @@ const Workout = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min="0"
+                min="0"   
               />
               <input
                 type="number"

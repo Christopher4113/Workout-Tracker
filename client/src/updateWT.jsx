@@ -10,7 +10,7 @@ const UpdateWT = () => {
   const [formData, setFormData] = useState({
     date: '',
     workout: '',
-    sets: 1,
+    sets: '',
     weights: [''],
     reps: ['']
   });
@@ -66,7 +66,7 @@ const UpdateWT = () => {
     setFormData({
       date: '',
       workout: '',
-      sets: 1,
+      sets: '',
       weights: [''],
       reps: ['']
     });

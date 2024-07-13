@@ -17,7 +17,7 @@ const enduranceSchema = new mongoose.Schema({
 
 const calorieSchema = new mongoose.Schema({
     date: String,
-    calories:Number
+    calorie:Number
 })
 
 const userSchema = new mongoose.Schema({

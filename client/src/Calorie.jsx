@@ -34,7 +34,7 @@ const Calorie = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/calorie/deleteWorkout/${id}`, {
+    axios.delete(`http://localhost:3001/calorie/deleteCalorie/${id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -96,7 +96,7 @@ const Calorie = () => {
                 <thead className='thead-dark'>
                     <tr>
                         <th colSpan="3">
-                            <Link to='/createEndurance' className='btn btn-success'>Add +</Link>
+                            <Link to='/createCalorie' className='btn btn-success'>Add +</Link>
                         </th>
                     </tr>
                     <tr>
@@ -110,9 +110,9 @@ const Calorie = () => {
                         info.map((item,index) => (
                             <tr key={index}>
                                 <td>{item.date}</td>
-                                <td>{item.calories}</td>
+                                <td>{item.calorie}</td>
                                 <td>
-                                    <Link to={`/updateEndurance/${item._id}`} className='btn btn-success btn-sm'>Edit</Link>
+                                    <Link to={`/updateCalorie/${item._id}`} className='btn btn-success btn-sm'>Edit</Link>
                                     <button className="btn btn-danger btn-sm ml-2" onClick={() => handleDelete(item._id)}>Delete</button>
                                 </td>
                             </tr>
