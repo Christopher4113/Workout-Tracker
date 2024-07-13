@@ -174,7 +174,7 @@ const Workout = () => {
                 className="form-control rounded-0 mb-2"
                 value={formData.weights[index] || ''}
                 onChange={(e) => handleWeightChange(index, e.target.value)}
-                min="0"   
+                min="0"
               />
               <input
                 type="number"

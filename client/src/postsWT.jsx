@@ -48,12 +48,16 @@ const PostsWT = () => {
   }
 
   return (
-    <div className='d-flex justify-content-center align-items-center bg-secondary vh-100' style={{
-        backgroundImage: `url(${stripes})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        flexDirection: 'column',
-        position: 'relative'
+    <div className="bg-secondary" style={{
+      backgroundImage: `url(${stripes})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative',
+      flexDirection: 'column'
     }}>
         <Link to="/register" style={{
             position: 'absolute',
@@ -91,7 +95,15 @@ const PostsWT = () => {
                 <span className="custom-text">MENU</span>
             </button>
         </Link>
-        <div className="table-container mt-4">
+        <div className="table-container mt-4" style={{
+          width: '80%',
+          maxWidth: '1000px',
+          margin: 'auto',
+          background: 'rgba(255, 255, 255, 0.8)', 
+          borderRadius: '8px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          padding: '20px'
+        }}>
             <table className='table table-bordered rounded'>
                 <thead className="thead-dark">
                     <tr>
