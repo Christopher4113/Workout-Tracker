@@ -80,7 +80,7 @@ const Workout = () => {
       }
     }
 
-    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+    const token = sessionStorage.getItem('token'); // Get the token from sessionStorage or other storage
 
     axios.post('http://localhost:3001/workout', { formData }, {
       headers: {

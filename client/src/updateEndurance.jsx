@@ -19,7 +19,7 @@ const updateEndurance = () => {
   useEffect(() => {
     axios.get(`http://localhost:3001/endurance/getWorkout/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
     })
       .then(result => {
@@ -89,7 +89,7 @@ const updateEndurance = () => {
       return;
     }
 
-    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+    const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
     axios.put(`http://localhost:3001/endurance/updateWorkout/${id}`, { formData }, {
       headers: {

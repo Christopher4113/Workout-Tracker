@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
 import stripes from './assets/varying-stripes.png';
 import axios from 'axios';
 
 const PostsWT = () => {
   const [info, setInfo] = useState([]);
+  const navigate = useNavigate(); // useNavigate hook for navigation
 
   const daysOrder = {
     'Monday': 1,
@@ -20,7 +21,7 @@ const PostsWT = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/workout', {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
     })
       .then(result => {
@@ -37,7 +38,7 @@ const PostsWT = () => {
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3001/workout/deleteWorkout/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
     })
     .then(result => {
@@ -46,6 +47,11 @@ const PostsWT = () => {
     })
     .catch(error => console.log(error));
   }
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');  // Clear sessionStorage
+    navigate('/register');  // Redirect to login page
+  };
 
   return (
     <div className="bg-secondary" style={{
@@ -59,14 +65,19 @@ const PostsWT = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
-        <Link to="/register" style={{
+        <button onClick={handleLogout} style={{
             position: 'absolute',
             top: '20px',
             right: '20px',
             zIndex: '10',
-            textDecoration: 'none' // Ensure no default underline for link
+            textDecoration: 'none', // Ensure no default underline for link
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
+            outline: 'none'
         }}>
-            <button className="Btn">
+            <div className="Btn">
                 <div className="sign">
                     <svg viewBox="0 0 512 512">
                         <path
@@ -75,8 +86,8 @@ const PostsWT = () => {
                     </svg>
                 </div>
                 <div className="text">Logout</div>
-            </button>
-        </Link>
+            </div>
+        </button>
         <Link to="/home" className="no-underline" style={{
             position: 'absolute', 
             top: '20px',

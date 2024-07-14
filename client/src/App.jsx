@@ -23,9 +23,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/Workout" element={<Workout />} />
-          <Route path="/Endurance" element={<Endurance />} />
-          <Route path="/Calorie" element={<Calorie />} />
-          <Route path="/postsWT" element={<PostsWT />} /> 
+          <Route path="/Endurance" element={<PrivateRoute><Endurance /></PrivateRoute>} />
+          <Route path="/Calorie" element={<PrivateRoute><Calorie /> </PrivateRoute>} />
+          <Route path="/postsWT" element={<PrivateRoute><PostsWT /> </PrivateRoute>} /> 
           <Route path="/updateWT/:id" element={<UpdateWT />} /> 
           <Route path="/createEndurance" element={<CreateEndurance />} /> 
           <Route path="/updateEndurance/:id" element={<UpdateEndurance />} />

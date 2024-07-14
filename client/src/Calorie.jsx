@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './calorie.css';
 import endurance from './assets/calorie.jpg';
 
 const Calorie = () => {
     const [info, setInfo] = useState([]);
+    const navigate = useNavigate(); // useNavigate hook for navigation
 
     const daysOrder = {
         'Monday': 1,
@@ -20,7 +21,7 @@ const Calorie = () => {
     useEffect(() => {
         axios.get('http://localhost:3001/calorie', {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }
         })
             .then(result => {
@@ -37,7 +38,7 @@ const Calorie = () => {
     const handleDelete = (id) => {
         axios.delete(`http://localhost:3001/calorie/deleteCalorie/${id}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }
         })
             .then(result => {
@@ -46,6 +47,10 @@ const Calorie = () => {
             })
             .catch(error => console.log(error));
     }
+    const handleLogout = () => {
+        sessionStorage.removeItem('token');  // Clear sessionStorage
+        navigate('/register');  // Redirect to login page
+    };
 
     return (
         <div className='bg-secondary vh-100 d-flex flex-column align-items-center justify-content-center' style={{
@@ -54,12 +59,17 @@ const Calorie = () => {
             backgroundPosition: 'center',
             position: 'relative'
         }}>
-            <Link to="/register" style={{
+            <button onClick={handleLogout} style={{
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
                 zIndex: '10',
-                textDecoration: 'none' // Ensure no default underline for link
+                textDecoration: 'none', // Ensure no default underline for link
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                outline: 'none'
             }}>
                 <button className="Btn">
                     <div className="sign">
@@ -71,7 +81,7 @@ const Calorie = () => {
                     </div>
                     <div className="text">Logout</div>
                 </button>
-            </Link>
+            </button>
             <Link to="/home" className="no-underline" style={{
                 position: 'absolute',
                 top: '20px',

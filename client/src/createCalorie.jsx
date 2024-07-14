@@ -41,7 +41,7 @@ const createCalorie = () => {
    }
     
 
-    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+    const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
     axios.post('http://localhost:3001/calorie', { formData }, {
       headers: {

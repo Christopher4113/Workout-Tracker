@@ -18,7 +18,7 @@ function Login() {
         axios.post('http://localhost:3001/login', { email, password })
         .then(result => {
             if (result.data.message === "Success") {
-                localStorage.setItem('token', result.data.token);
+                sessionStorage.setItem('token', result.data.token);
                 navigate('/home');
             } else {
                 setError(result.data.error);

@@ -66,7 +66,7 @@ const CreateEndurance = () => {
       return;
     }
 
-    const token = localStorage.getItem('token'); // Get the token from localStorage or other storage
+    const token = sessionStorage.getItem('token'); // Get the token from sessionStorage or other storage
 
     axios.post('http://localhost:3001/endurance', { formData }, {
       headers: {
