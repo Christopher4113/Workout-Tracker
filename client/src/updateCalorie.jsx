@@ -53,8 +53,8 @@ const updateCalorie = () => {
       return;
     }
 
-    if (!calorie) {
-        alert("Please select a date.");
+    if (!calorie || calorie < 0) {
+        alert("Please enter a valid calorie count (must be 0 or greater).");
         return;
       }
     

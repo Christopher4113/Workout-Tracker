@@ -35,8 +35,8 @@ const createCalorie = () => {
       return;
     }
 
-   if (!calorie) {
-    alert("Please enter calories");
+   if (!calorie || calorie < 0) {
+    alert("Please enter a valid calorie count (must be 0 or greater).");
     return;
    }
     
