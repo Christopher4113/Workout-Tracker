@@ -125,6 +125,7 @@ const updateCalorie = () => {
               className="form-control rounded-0"
               value={formData.calorie}
               onChange={handleInputChange}
+              min="0"
             />
         </div>         
         <button type="submit" className="btn btn-success w-100 rounded-0" style={{ backgroundColor: 'green', color: 'white', border: 'none', marginBottom: '10px' }}>
