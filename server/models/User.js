@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema({
     calories: [calorieSchema]
 });
 
+
 const userModel = mongoose.model("users", userSchema);
 
 module.exports = userModel;

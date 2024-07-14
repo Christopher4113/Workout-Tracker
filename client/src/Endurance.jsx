@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './endurance.css'; // Import the CSS file
 import endurance from './assets/endurance.jpg';
@@ -47,6 +47,7 @@ const Endurance = () => {
         })
         .catch(error => console.log(error));
     }
+
     const handleLogout = () => {
         sessionStorage.removeItem('token');  // Clear sessionStorage
         navigate('/register');  // Redirect to login page
@@ -108,11 +109,13 @@ const Endurance = () => {
             <div className="table-container mt-4" style={{
                 width: '80%',
                 maxWidth: '1000px',
-                margin: 'auto',
                 background: 'rgba(255, 255, 255, 0.8)', 
                 borderRadius: '8px',
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                padding: '20px'
+                padding: '20px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
             }}>
                 <table className='table table-bordered rounded'>
                     <thead className="thead-dark">
