@@ -82,17 +82,8 @@ function Home() {
                 position: 'absolute',
                 top: '10px'
             }}>
-                Fitness Tracker
+                Select Tracker
             </h1>
-            <p style={{
-                color:'white',
-                fontSize: '1em',
-                fontFamily: 'Times New Roman',
-                position: 'absolute',
-                top: '175px'
-            }}>
-                FitnessTrackr is a user-friendly workout tracker web app that helps users log workouts, track progress, set goals, and stay motivated to achieve their fitness objectives.
-            </p>
 
             <div className='d-flex justify-content-around' style={{ width: '100%', marginTop: '200px' }}>
                 <div style={boxStyle}>

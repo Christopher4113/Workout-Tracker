@@ -13,12 +13,14 @@ import CreateEndurance from './createEndurance.jsx';
 import UpdateEndurance from './updateEndurance.jsx';
 import CreateCalorie from './createCalorie.jsx';
 import UpdateCalorie from './updateCalorie.jsx';
+import Start from './Start.jsx';
 
 function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/register" />} />
+          <Route path="/" element={<Navigate to="/start" />} />
+          <Route path="/start" element={<Start />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
