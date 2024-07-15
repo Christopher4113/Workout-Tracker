@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
-import stripes from './assets/varying-stripes.png';
+import weight from './assets/weight.jpg';
 import axios from 'axios';
 
 const PostsWT = () => {
@@ -55,7 +55,7 @@ const PostsWT = () => {
 
   return (
     <div className="bg-secondary" style={{
-      backgroundImage: `url(${stripes})`,
+      backgroundImage: `url(${weight})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       minHeight: '100vh',

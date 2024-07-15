@@ -100,6 +100,16 @@ const Calorie = () => {
                     <span className="custom-text">MENU</span>
                 </button>
             </Link>
+            <a href="https://www.calculator.net/calorie-calculator.html" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+                <button className="bottom-button" style={{
+                    position: 'absolute',
+                    bottom: '20px',
+                    right: '20px',
+                }}>
+                    <span>Calorie Calculator</span>
+                </button>
+            </a>
+
             <div className='table-container mt-4' style={{
                 width: '80%',
                 maxWidth: '1000px',

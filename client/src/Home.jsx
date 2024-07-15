@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './styles.css'; // Import the CSS file
 import menu from './assets/menu.jpg';
 import dumbell from './assets/dumbell.jpg';
@@ -8,6 +8,14 @@ import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavi
 
 function Home() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const elements = document.querySelectorAll('.floatIn');
+        elements.forEach((element, index) => {
+          element.style.animationDelay = `${index * 0.5}s`;
+          element.classList.add('start-animation');
+        });
+    }, []);
 
     const handleLogout = () => {
         sessionStorage.removeItem('token');  // Clear sessionStorage
@@ -53,7 +61,7 @@ function Home() {
             flexDirection: 'column',
             position: 'relative'
         }}>
-            <button onClick={handleLogout} style={{
+            <button className='floatIn floatInDelay6' onClick={handleLogout} style={{
                 position: 'absolute',
                 top: '20px',
                 right: '20px',
@@ -75,7 +83,7 @@ function Home() {
                 </div>
             </button>
 
-            <h1 style={{
+            <h1 className='floatIn floatInDelay1' style={{
                 color: 'white',
                 fontSize: '10em',
                 fontFamily: 'Times New Roman',
@@ -84,19 +92,28 @@ function Home() {
             }}>
                 Select Tracker
             </h1>
+            <p className='floatIn floatInDelay2' style={{
+                color:'white',
+                fontSize:'1em',
+                fontFamily: 'Times New Roman',
+                position: 'absolute',
+                top: '200px'
+            }}>
+                Note: I did not implement any unit values for the weights, duration and distance which leads it up to you to interpret the values you implement
+            </p>
 
-            <div className='d-flex justify-content-around' style={{ width: '100%', marginTop: '200px' }}>
-                <div style={boxStyle}>
+            <div className='d-flex justify-content-around ' style={{ width: '100%', marginTop: '200px' }}>
+                <div className='floatIn floatInDelay3' style={boxStyle}>
                     <img src={dumbell} alt="Dumbbell" style={imgStyle} />
                     <p style={textStyle}>Weight Lifting Tracker</p>
                     <Link to="/postsWT" style={{ ...linkStyle, ...{ color: 'white', textDecoration: 'none' } }} className="button">Explore</Link>
                 </div>
-                <div style={boxStyle}>
+                <div className='floatIn floatInDelay4' style={boxStyle}>
                     <img src={running} alt="Running" style={imgStyle} />
                     <p style={textStyle}>Endurance Tracker</p>
                     <Link to="/Endurance" style={{ ...linkStyle, ...{ color: 'white', textDecoration: 'none' } }} className="button">Explore</Link>
                 </div>
-                <div style={boxStyle}>
+                <div className='floatIn floatInDelay5' style={boxStyle}>
                     <img src={food} alt="Food" style={imgStyle} />
                     <p style={textStyle}>Calorie Tracker</p>
                     <Link to="/Calorie" style={{ ...linkStyle, ...{ color: 'white', textDecoration: 'none' } }} className="button">Explore</Link>

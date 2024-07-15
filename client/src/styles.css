@@ -92,7 +92,7 @@
 
 /* Background Screen for workout tracker */
 .bg-secondary {
-  background-image: url('./assets/varying-stripes.png');
+  background-image: url('./assets/weight.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: repeat-y; /* Ensure the background repeats vertically */
@@ -252,4 +252,37 @@
 
 .exit.hover-filled-slide-left:hover::before {
   width: 0%;
+}
+
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floatIn {
+  opacity: 0; /* Start with elements hidden */
+  animation: floatIn 1s forwards; /* Animation duration and fill mode */
+}
+
+.floatInDelay1 {
+  animation-delay: 0.5s;
+}
+
+.floatInDelay2 {
+  animation-delay: 1s;
+}
+
+.floatInDelay3 {
+  animation-delay: 1.5s;
+}
+
+.floatInDelay4 {
+  animation-delay: 2s;
 }
