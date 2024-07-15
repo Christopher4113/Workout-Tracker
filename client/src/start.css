@@ -1,115 +1,155 @@
-/* Background Screen for workout tracker */
+/* Default styles for large screens */
 .bg-secondary {
-    background-image: url('./assets/start.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y; /* Ensure the background repeats vertically */
-    min-height: 100vh;
-    min-width: 100%;
-  }
+  background-image: url('./assets/start.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
+  min-height: 100vh;
+  min-width: 100%;
+}
 
- .start {
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    padding-block: 0.5rem;
-    padding-inline: 1.25rem;
-    background-color: rgb(0 107 179);
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #ffff;
-    gap: 10px;
-    font-weight: bold;
-    border: 3px solid #ffffff4d;
-    outline: none;
-    overflow: hidden;
-    font-size: 15px;
-  }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .start:hover {
-    transform: scale(1.05);
-    border-color: #fff9;
-  }
-  
-  .start:hover .icon {
-    transform: translate(4px);
-  }
-  
-  .start:hover::before {
-    animation: shine 1.5s ease-out infinite;
-  }
-  
-  .start::before {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    background-image: linear-gradient(
-      120deg,
-      rgba(255, 255, 255, 0) 30%,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0) 70%
-    );
-    top: 0;
+.start {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: rgb(0 107 179);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #ffffff4d;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px; /* Default font size */
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
+}
+
+.start:hover {
+  transform: scale(1.05);
+  border-color: #fff9;
+}
+
+.start:hover .icon {
+  transform: translate(4px);
+}
+
+.start:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+.start::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
     left: -100px;
-    opacity: 0.6;
   }
-  
-  @keyframes shine {
-    0% {
-      left: -100px;
-    }
-  
-    60% {
-      left: 100%;
-    }
-  
-    to {
-      left: 100%;
-    }
+
+  60% {
+    left: 100%;
   }
-  
-  @keyframes floatIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+
+  to {
+    left: 100%;
   }
-  
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.floatIn {
+  opacity: 0;
+  animation: floatIn 1s forwards;
+}
+
+.floatInDelay1 {
+  animation-delay: 0.5s;
+}
+
+.floatInDelay2 {
+  animation-delay: 1s;
+}
+
+.floatInDelay3 {
+  animation-delay: 1.5s;
+}
+
+.floatInDelay4 {
+  animation-delay: 2s;
+}
+
+/* Media Queries for smaller screens */
+@media screen and (max-width: 1024px) {
+  .bg-secondary {
+    background-size: contain; /* Adjust background size */
+    background-repeat: no-repeat; /* Prevent background repeat */
+  }
+
   .floatIn {
-    opacity: 0; /* Start with elements hidden */
-    animation: floatIn 1s forwards; /* Animation duration and fill mode */
+    font-size: 0.8em; /* Reduce font size */
   }
-  
+
   .floatInDelay1 {
-    animation-delay: 0.5s;
+    top: 5px; /* Adjust top position */
+    font-size: 2.5em; /* Adjust font size for title */
   }
-  
+
   .floatInDelay2 {
-    animation-delay: 1s;
+    top: 150px; /* Adjust top position */
+    font-size: 0.8em; /* Adjust font size for paragraphs */
   }
-  
+
   .floatInDelay3 {
-    animation-delay: 1.5s;
+    top: 200px; /* Adjust top position */
+    width: 200px; /* Adjust image size */
+    height: 200px; /* Adjust image size */
   }
-  
+
   .floatInDelay4 {
-    animation-delay: 2s;
+    bottom: 150px; /* Adjust bottom position */
+    font-size: 0.8em; /* Adjust font size for bottom paragraph */
   }
-  
 
+  .start {
+    font-size: 12px; /* Adjust button font size */
+    padding-block: 0.4rem; /* Adjust button padding */
+    padding-inline: 1rem; /* Adjust button padding */
+  }
 
-  
+  .icon {
+    width: 18px; /* Adjust icon size */
+    height: 18px; /* Adjust icon size */
+  }
+}

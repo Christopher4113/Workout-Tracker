@@ -36,7 +36,11 @@ const Start = () => {
         fontFamily: 'Times New Roman',
         position: 'absolute',
         top: '10px',
-        textAlign: 'center'
+        textAlign: 'center',
+        // Corrected media query syntax
+        '@media (maxWidth: 1024px)': {
+          fontSize: '1.5em' 
+        }
       }}>
         Fitness Tracker
       </h1>
