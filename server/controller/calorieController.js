@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     }
   });
   
- 
+ //get calorie info
   router.get('/', async (req, res) => {
     const userId = req.user.userId; // Extract the user ID from the JWT token
     
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     }
   });
   
-
+//get Calorie info for updating
   router.get('/getCalorie/:id', async (req, res) => {
     const userId = req.user.userId; // Extract the user ID from the JWT token
     const workoutId = req.params.id;
@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
     }
   });
   
- 
+ //update calorie info
   router.put('/updateCalorie/:id', async (req, res) => {
     const userId = req.user.userId; // Extract the user ID from the JWT token
     const calorieId = req.params.id;
@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
     }
   });
   
- 
+ //delete calorie info
   router.delete('/deleteCalorie/:id', async (req, res) => {
     const userId = req.user.userId; // Extract the user ID from the JWT token
     const calorieId = req.params.id;

@@ -4,6 +4,7 @@ const cors = require("cors");
 const userModel = require("./models/User");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
 const calorieRouter = require('./controller/calorieController');
@@ -29,16 +30,23 @@ app.post("/login", (req, res) => {
   if (!email || !password) {
     return res.json({ error: "Email and password are required" });
   }
-
+  //Checking if passwords match in bycrypt system
   userModel.findOne({ email: email })
     .then(user => {
       if (user) {
-        if (user.password === password) {
-          const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
-          res.json({ message: "Success", token: token });
-        } else {
-          res.json({ error: "The password was incorrect" });
-        }
+        bcrypt.compare(password, user.password)
+          .then(isMatch => {
+            if (isMatch) {
+              const token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: '1h' });
+              res.json({ message: "Success", token: token });
+            } else {
+              res.json({ error: "The password was incorrect" });
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            res.status(500).json({ error: "An error occurred. Please try again." });
+          });
       } else {
         res.json({ error: "No email was registered" });
       }
@@ -48,7 +56,7 @@ app.post("/login", (req, res) => {
       res.status(500).json({ error: "An error occurred. Please try again." });
     });
 });
-
+//registering and hashing
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -65,8 +73,12 @@ app.post('/register', (req, res) => {
             if (user) {
               return res.json({ error: "Email already registered" });
             } else {
-              userModel.create({ name, email, password })
-                .then(newUser => res.json(newUser))
+              bcrypt.hash(password, 10)
+                .then(hashedPassword => {
+                  userModel.create({ name, email, password: hashedPassword })
+                    .then(newUser => res.json(newUser))
+                    .catch(error => res.json(error));
+                })
                 .catch(error => res.json(error));
             }
           })
@@ -75,25 +87,23 @@ app.post('/register', (req, res) => {
     })
     .catch(error => res.json(error));
 });
-
+//authentication
 const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.status(401).json({ error: "Access denied" });
-  
-    jwt.verify(token, SECRET_KEY, (err, user) => {
-      if (err) return res.status(403).json({ error: "Invalid token" });
-      req.user = user;
-      next();
-    });
-  };
-  
-  // Apply the middleware to routes that require authentication
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token == null) return res.status(401).json({ error: "Access denied" });
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.status(403).json({ error: "Invalid token" });
+    req.user = user;
+    next();
+  });
+};
+
+// Apply the middleware to routes that require authentication
 app.use('/workout', authenticateToken, workoutRouter);
-
-app.use('/endurance',authenticateToken,enduranceRouter);
-
-app.use('/calorie',authenticateToken,calorieRouter);
+app.use('/endurance', authenticateToken, enduranceRouter);
+app.use('/calorie', authenticateToken, calorieRouter);
 
 app.listen(3001, () => {
   console.log("Server is running");
