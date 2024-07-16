@@ -19,65 +19,17 @@ const Start = () => {
   }, []);
 
   return (
-    <div className="bg-secondary" style={{
-      backgroundImage: `url(${start})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      minHeight: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'relative',
-      flexDirection: 'column'
-    }}>
-      <h1 className="floatIn floatInDelay1" style={{
-        color: 'white',
-        fontSize: '10em',
-        fontFamily: 'Times New Roman',
-        position: 'absolute',
-        top: '10px',
-        textAlign: 'center',
-        // Corrected media query syntax
-        '@media (maxWidth: 1024px)': {
-          fontSize: '1.5em' 
-        }
-      }}>
-        Fitness Tracker
-      </h1>
-      <p className="floatIn floatInDelay2" style={{
-        color: 'white',
-        fontSize: '1em',
-        fontFamily: 'Times New Roman',
-        position: 'absolute',
-        top: '250px',
-        maxWidth: '600px',
-        textAlign: 'center',
-        margin: '0 auto'
-      }}>
-        FitnessTrackr is a user-friendly workout tracker web app that helps users log workouts, track progress, set goals, and stay motivated to achieve their fitness objectives.
+    <div className="bg-secondary">
+      <h1 className="floatIn floatInDelay1 title">Fitness Tracker</h1>
+
+      <p className="floatIn floatInDelay2 p1">
+        FitnessTracker is a user-friendly workout tracker web app that helps users log workouts, track progress, set goals, and stay motivated to achieve their fitness objectives.
       </p>
-      <img src={icon} alt="Icon" className="floatIn floatInDelay3" style={{
-        position: 'absolute',
-        top: '350px',
-        width: '300px', // Adjust size as needed
-        height: '300px', // Adjust size as needed
-      }} />
-      <p className="floatIn floatInDelay4" style={{
-        color: 'white',
-        fontSize: '1em',
-        fontFamily: 'Times New Roman',
-        position: 'absolute',
-        bottom: '200px',
-        maxWidth: '600px',
-        textAlign: 'center',
-        margin: '0 auto'
-      }}>
-        To use FitnessTracker, sign up or log in, then log your workouts, track your progress, set goals, and access educational resources. Customize your workout plans, track daily calories and activities. 
+      <img src={icon} alt="Icon" className="floatIn floatInDelay3 image" />
+      <p className="floatIn floatInDelay4 p2">
+        To use FitnessTracker, sign up or log in, then log your workouts, track your progress, set goals, and access educational resources. Customize your workout plans, track daily calories and activities.
       </p>
-      <button onClick={handleStart} className="start floatIn floatInDelay4" style={{
-        position: 'absolute',
-        bottom: '100px'
-      }}>
+      <button onClick={handleStart} className="start floatIn floatInDelay4">
         Get Started
         <svg fill="currentColor" viewBox="0 0 24 24" className="icon">
           <path

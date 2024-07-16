@@ -6,10 +6,50 @@
   background-repeat: repeat-y;
   min-height: 100vh;
   min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
+.title {
+  color: white;
+  font-size: 10vw;
+  font-family: 'Times New Roman';
+  position: absolute;
+  top: 10px;
+  text-align: center;
+}
+
+.p1, .p2 {
+  color: white;
+  font-size: 1.2vw;
+  font-family: 'Times New Roman';
+  position: absolute;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.p1 {
+  top: 250px;
+}
+
+.p2 {
+  bottom: 200px;
+}
+
+.image {
+  position: absolute;
+  top: 350px;
+  width: 15vw;
+  height: 15vw;
 }
 
 .start {
-  position: relative;
+  position: absolute;
+  bottom: 100px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   padding-block: 0.5rem;
@@ -20,13 +60,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #ffff;
+  color: #fff;
   gap: 10px;
   font-weight: bold;
   border: 3px solid #ffffff4d;
   outline: none;
   overflow: hidden;
-  font-size: 15px; /* Default font size */
+  font-size: 15px;
 }
 
 .icon {
@@ -41,7 +81,7 @@
 }
 
 .start:hover .icon {
-  transform: translate(4px);
+  transform: translateX(4px);
 }
 
 .start:hover::before {
@@ -112,44 +152,126 @@
 
 /* Media Queries for smaller screens */
 @media screen and (max-width: 1024px) {
-  .bg-secondary {
-    background-size: contain; /* Adjust background size */
-    background-repeat: no-repeat; /* Prevent background repeat */
+  .title {
+    font-size: 8vw;
   }
 
-  .floatIn {
-    font-size: 0.8em; /* Reduce font size */
+  .p1, .p2 {
+    font-size: 1.8vw;
   }
 
-  .floatInDelay1 {
-    top: 5px; /* Adjust top position */
-    font-size: 2.5em; /* Adjust font size for title */
-  }
-
-  .floatInDelay2 {
-    top: 150px; /* Adjust top position */
-    font-size: 0.8em; /* Adjust font size for paragraphs */
-  }
-
-  .floatInDelay3 {
-    top: 200px; /* Adjust top position */
-    width: 200px; /* Adjust image size */
-    height: 200px; /* Adjust image size */
-  }
-
-  .floatInDelay4 {
-    bottom: 150px; /* Adjust bottom position */
-    font-size: 0.8em; /* Adjust font size for bottom paragraph */
+  .image {
+    top: 350px;
+    width: 20vw;
+    height: 20vw;
   }
 
   .start {
-    font-size: 12px; /* Adjust button font size */
-    padding-block: 0.4rem; /* Adjust button padding */
-    padding-inline: 1rem; /* Adjust button padding */
+    font-size: 13px;
   }
 
   .icon {
-    width: 18px; /* Adjust icon size */
-    height: 18px; /* Adjust icon size */
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 6vw;
+  }
+
+  .p1, .p2 {
+    font-size: 2.5vw;
+  }
+
+  .image {
+    top: 350px;
+    width: 25vw;
+    height: 25vw;
+  }
+
+  .start {
+    font-size: 12px;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .title {
+    font-size: 10vw;
+  }
+
+  .p1, .p2 {
+    font-size: 3.5vw;
+  }
+
+  .image {
+    top: 350px;
+    width: 40vw;
+    height: 40vw;
+  }
+
+  .start {
+    font-size: 10px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .title {
+    font-size: 12vw;
+  }
+
+  .p1, .p2 {
+    font-size: 4vw;
+  }
+
+  .image {
+    top: 375px;
+    width: 40vw;
+    height: 40vw;
+  }
+
+  .start {
+    font-size: 9px;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .title {
+    font-size: 14vw;
+  }
+
+  .p1, .p2 {
+    font-size: 4vw;
+  }
+
+  .image {
+    top: 350px;
+    width: 45vw;
+    height: 45vw;
+  }
+
+  .start {
+    font-size: 8px;
+  }
+
+  .icon {
+    width: 12px;
+    height: 12px;
   }
 }
