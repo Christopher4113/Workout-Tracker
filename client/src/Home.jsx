@@ -54,12 +54,12 @@ function Home() {
     };
 
     return (
-        <div className='d-flex justify-content-center align-items-center vh-100' style={{
+        <div className='d-flex justify-content-center align-items-center vh-100 bg' style={{
             backgroundImage: `url(${menu})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             flexDirection: 'column',
-            position: 'relative'
+            position: 'relative',
         }}>
             <button className='floatIn floatInDelay6' onClick={handleLogout} style={{
                 position: 'absolute',
