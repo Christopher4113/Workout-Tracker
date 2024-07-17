@@ -201,15 +201,15 @@ body {
 
 /* Base background styles */
 .bg {
-  position: absolute; /* Ensures the background adjusts with the content and scrolls */
+  position: fixed; /* Ensures the background stays fixed in place */
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh; /* Ensures the background covers at least the full viewport height */
+  height: 100%; /* Ensure the background covers the full viewport height */
   background-image: url('./assets/menu.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: no-repeat; /* Ensures the background does not repeat */
   z-index: -1; /* Ensures the background stays behind the content */
 }
 .floatIn {
@@ -398,15 +398,21 @@ body {
   
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
+ 
   .d-flex {
     /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
   .bg {
-    
     /* Adjust background styles */
     background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+  }
+  .contain {
+    margin-top: 50px;
+    padding-top: 800px; /* Added padding-top to move all boxes lower */
   }
   .box {
     /* Adjust box styles */
@@ -429,7 +435,8 @@ body {
   }
 }
 
-@media screen and (max-width: 375px) {
+
+@media screen and (max-width: 393px) {
   .d-flex {
     /* Adjust flex direction for smaller screens */
     flex-direction: column;
@@ -455,6 +462,10 @@ body {
   .link {
     /* Adjust link styles */
     font-size: 0.7em;
+  }
+  .Btn {
+    margin-top: 50px;
+    margin-right:130px
   }
 }
 
@@ -484,5 +495,9 @@ body {
   .link {
     /* Adjust link styles */
     font-size: 0.6em;
+  }
+  .Btn {
+    margin-top: 50px;
+    margin-right:100px
   }
 }
