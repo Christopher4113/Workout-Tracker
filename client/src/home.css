@@ -4,6 +4,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .d-flex {
@@ -117,10 +118,9 @@ body {
 /* Exit button */
 .exit {
   position: relative;
-  display: inline-flex; /* Change to inline-flex */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   height: auto;
   background-color: transparent;
@@ -128,7 +128,7 @@ body {
   cursor: pointer;
   margin: 0px 25px 15px;
   min-width: 150px;
-  text-align: center; /* Add this line to center the text */
+  text-align: center;
 }
 
 .exit span {
@@ -143,7 +143,6 @@ body {
   width: 100%;
   padding: 15px 20px;
   transition: 0.3s;
-  text-align: center; /* Add this line to center the text */
 }
 
 .exit-1::before {
@@ -212,11 +211,11 @@ body {
   background-repeat: no-repeat; /* Ensures the background does not repeat */
   z-index: -1; /* Ensures the background stays behind the content */
 }
+
 .floatIn {
   opacity: 0; /* Start with elements hidden */
   animation: floatIn 1s forwards; /* Animation duration and fill mode */
 }
-
 
 .floatInDelay1 {
   animation-delay: 0.5s;
@@ -250,6 +249,7 @@ body {
   width: 100%;
   margin-top: 200px;
 }
+
 .box {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
@@ -281,13 +281,15 @@ body {
   font-family: 'Times New Roman', Times, serif;
   text-decoration: none;
 }
+
 .title {
-    color: white;
-    font-size: 10em;
-    font-family: 'Times New Roman', Times, serif;
-    position: absolute;
-    top: 10px;
+  color: white;
+  font-size: 10em;
+  font-family: 'Times New Roman', Times, serif;
+  position: absolute;
+  top: 10px;
 }
+
 .note {
   color: white;
   font-size: 1em;
@@ -303,25 +305,31 @@ body {
     /* Adjust background styles for larger devices */
     background-size: cover;
   }
+
   .box {
     /* Adjust box styles */
     width: 400px;
     padding: 80px;
   }
+
   .img {
     /* Adjust image styles */
     width: 300px;
     height: 300px;
   }
+
   .message {
     font-size: 1em;
   }
+
   .link {
     font-size: 1em;
   }
+
   .title {
     font-size: 8em;
   }
+
   .note {
     font-size: 1em;
     display: flex;
@@ -334,24 +342,29 @@ body {
     /* Adjust background styles */
     background-size: cover;
   }
+
   .box {
     /* Adjust box styles */
     width: 300px;
     padding: 60px;
   }
+
   .img {
     /* Adjust image styles */
     width: 250px;
     height: 250px;
   }
+
   .message {
     /* Adjust text styles */
     font-size: 1.2em;
   }
+
   .link {
     /* Adjust link styles */
     font-size: 1em;
   }
+
   .button {
     padding: 10px 20px;
     border-radius: 80px;
@@ -359,113 +372,127 @@ body {
 }
 
 @media screen and (max-width: 768px) {
- 
   .bg {
     /* Adjust background styles */
     background-size: cover;
   }
-  
+
   .box {
     /* Adjust box styles */
     width: 180px;
     padding: 40px;
   }
+
   .img {
     /* Adjust image styles */
     width: 180px;
     height: 180px;
   }
+
   .message {
     /* Adjust text styles */
     font-size: 1.2em;
     max-width: 150px;
   }
+
   .link {
     /* Adjust link styles */
     font-size: 1em;
   }
+
   .button {
     padding: 10px 20px;
     border-radius: 80px;
   }
+
   .title {
     font-size: 2em;
   }
+
   .note {
     font-size: 1em;
     text-align: center;
   }
-  
 }
 
 @media screen and (max-width: 430px) {
- 
   .d-flex {
     /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
+
   .bg {
     /* Adjust background styles */
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
   }
+
   .contain {
     margin-top: 50px;
     padding-top: 800px; /* Added padding-top to move all boxes lower */
   }
+
   .box {
     /* Adjust box styles */
     width: 200px;
     padding: 30px;
     justify-content: center;
   }
+
   .img {
     /* Adjust image styles */
     width: 150px;
     height: 150px;
   }
+
   .message {
     /* Adjust text styles */
     font-size: 1em;
   }
+
   .link {
     /* Adjust link styles */
     font-size: 0.8em;
   }
 }
 
-
 @media screen and (max-width: 393px) {
   .d-flex {
     /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
+
   .bg {
     /* Adjust background styles */
     background-size: cover;
   }
+
   .box {
     /* Adjust box styles */
     width: 200px;
     padding: 20px;
   }
+
   .img {
     /* Adjust image styles */
     width: 120px;
     height: 120px;
   }
+
   .message {
     /* Adjust text styles */
     font-size: 0.9em;
   }
+
   .link {
     /* Adjust link styles */
     font-size: 0.7em;
   }
+
   .Btn {
     margin-top: 50px;
-    margin-right:130px
+    margin-right: 130px;
   }
 }
 
@@ -474,30 +501,36 @@ body {
     /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
+
   .bg {
     /* Adjust background styles */
     background-size: cover;
   }
+
   .box {
     /* Adjust box styles */
     width: 180px;
     padding: 15px;
   }
+
   .img {
     /* Adjust image styles */
     width: 100px;
     height: 100px;
   }
+
   .message {
     /* Adjust text styles */
     font-size: 0.8em;
   }
+
   .link {
     /* Adjust link styles */
     font-size: 0.6em;
   }
+
   .Btn {
     margin-top: 50px;
-    margin-right:100px
+    margin-right: 100px;
   }
 }
