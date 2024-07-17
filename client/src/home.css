@@ -115,76 +115,7 @@ body {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Exit button */
-.exit {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  height: auto;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0px 25px 15px;
-  min-width: 150px;
-  text-align: center;
-}
 
-.exit span {
-  position: relative;
-  display: inline-block;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 20px;
-  transition: 0.3s;
-}
-
-.exit-1::before {
-  background-color: #f10707;
-  transition: 0.3s ease-out;
-}
-
-.exit-1 span {
-  color: rgb(255, 255, 255);
-  border: 1px solid #f10707;
-  transition: 0.2s 0.1s;
-}
-
-.exit-1 span:hover {
-  color: #f10707;
-  transition: 0.2s 0.1s;
-}
-
-:active,
-:hover,
-:focus {
-  outline: 0!important;
-  outline-offset: 0;
-}
-
-::before,
-::after {
-  position: absolute;
-  content: "";
-}
-
-.exit.hover-filled-slide-left::before {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.exit.hover-filled-slide-left:hover::before {
-  width: 0%;
-}
 
 /* Keyframes for floating animation */
 @keyframes floatIn {
