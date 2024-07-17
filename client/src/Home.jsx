@@ -22,45 +22,9 @@ function Home() {
         navigate('/register');  // Redirect to register page
     };
 
-    const boxStyle = {
-        background: 'rgba(255, 255, 255, 0.2)',
-        borderRadius: '10px',
-        padding: '100px',
-        margin: '10px',
-        textAlign: 'center',
-        width: '500px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-    };
-
-    const imgStyle = {
-        width: '350px',
-        height: '350px',
-        objectFit: 'cover',
-        marginBottom: '20px'
-    };
-
-    const textStyle = {
-        color: 'white',
-        fontSize: '1.5em',
-        fontFamily: 'Times New Roman, Times, serif'
-    };
-
-    const linkStyle = {
-        fontSize: '1.2em',
-        fontFamily: 'Times New Roman, Times, serif'
-    };
 
     return (
-        <div className='d-flex justify-content-center align-items-center vh-100 bg' style={{
-            backgroundImage: `url(${menu})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            flexDirection: 'column',
-            position: 'relative',
-        }}>
+        <div className='d-flex justify-content-center align-items-center vh-100 bg'>
             <button className='floatIn floatInDelay6' onClick={handleLogout} style={{
                 position: 'absolute',
                 top: '20px',
@@ -81,40 +45,28 @@ function Home() {
                 </div>
             </button>
 
-            <h1 className='floatIn floatInDelay1 title' style={{
-                color: 'white',
-                fontSize: '10em',
-                fontFamily: 'Times New Roman',
-                position: 'absolute',
-                top: '10px'
-            }}>
+            <h1 className='floatIn floatInDelay1 title'>
                 Select Tracker
             </h1>
-            <p className='floatIn floatInDelay2 note' style={{
-                color: 'white',
-                fontSize: '1em',
-                fontFamily: 'Times New Roman',
-                position: 'absolute',
-                top: '200px'
-            }}>
+            <p className='floatIn floatInDelay2 note'>
                 Note: I did not implement any unit values for the weights, duration, and distance which leads it up to you to interpret the values you implement
             </p>
 
-            <div className='d-flex justify-content-around' style={{ width: '100%', marginTop: '200px' }}>
-                <div className='floatIn floatInDelay3' style={boxStyle}>
-                    <img src={dumbell} alt="Dumbbell" style={imgStyle} />
-                    <p style={textStyle}>Weight Lifting Tracker</p>
-                    <Link to="/postsWT" style={{ ...linkStyle, color: 'white', textDecoration: 'none' }} className="button">Explore</Link>
+            <div className='d-flex justify-content-around contain'>
+                <div className='floatIn floatInDelay3 box'>
+                    <img src={dumbell} className='img' alt="Dumbbell" />
+                    <p className='message'>Weights Tracker</p>
+                    <Link to="/postsWT" className="button link">Explore</Link>
                 </div>
-                <div className='floatIn floatInDelay4' style={boxStyle}>
-                    <img src={running} alt="Running" style={imgStyle} />
-                    <p style={textStyle}>Endurance Tracker</p>
-                    <Link to="/Endurance" style={{ ...linkStyle, color: 'white', textDecoration: 'none' }} className="button">Explore</Link>
+                <div className='floatIn floatInDelay4 box'>
+                    <img src={running} alt="Running" className='img'/>
+                    <p className='message'>Endurance Tracker</p>
+                    <Link to="/Endurance" className="button link">Explore</Link>
                 </div>
-                <div className='floatIn floatInDelay5' style={boxStyle}>
-                    <img src={food} alt="Food" style={imgStyle} />
-                    <p style={textStyle}>Calorie Tracker</p>
-                    <Link to="/Calorie" style={{ ...linkStyle, color: 'white', textDecoration: 'none' }} className="button">Explore</Link>
+                <div className='floatIn floatInDelay5 box'>
+                    <img src={food} alt="Food" className='img'/>
+                    <p className='message'>Calorie Tracker</p>
+                    <Link to="/Calorie" className="button link">Explore</Link>
                 </div>
             </div>
         </div>
