@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
-import weight from './assets/weight.jpg';
 import axios from 'axios';
 
 const PostsWT = () => {
@@ -78,7 +77,7 @@ const PostsWT = () => {
                 <div className="text">Logout</div>
             </div>
         </button>
-        <Link to='/home' class="boton-elegante">
+        <Link to='/home' className="boton-elegante">
           Menu
         </Link>
 

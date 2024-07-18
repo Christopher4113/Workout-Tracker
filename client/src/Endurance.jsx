@@ -88,20 +88,10 @@ const Endurance = () => {
                     <div className="text">Logout</div>
                 </button>
             </button>
-            <Link to='/home' class="boton-elegante">
+            <Link to='/home' className="boton-elegante">
                 Menu
             </Link>
-            <div className="table-container mt-4" style={{
-                width: '80%',
-                maxWidth: '1000px',
-                background: 'rgba(255, 255, 255, 0.8)', 
-                borderRadius: '8px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                padding: '20px',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
+            <div className="table-container mt-4">
                 <table className='table table-bordered rounded'>
                     <thead className="thead-dark">
                         <tr>

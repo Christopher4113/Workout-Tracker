@@ -115,17 +115,7 @@ const UpdateWT = () => {
   };
 
   return (
-    <div className="bg-secondary" style={{
-      backgroundImage: `url(${weight})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      minHeight: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'relative',
-      flexDirection: 'column'
-    }}>
+    <div className="bg-screen">
       <Link to="/postsWT" className="exit exit-1 hover-filled-slide-left" style={{
         position: 'absolute',
         top: '20px',
