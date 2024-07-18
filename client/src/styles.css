@@ -15,13 +15,12 @@
 .tracker-container {
   width: 80%; /* Adjust width to fit the design */
   max-width: 500px;
-  margin-bottom: 20px;
+  margin-top: 200px !important;
   padding: 20px;
   background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for readability */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: auto;
-  margin-top: 20px;
   align-items: center;
   justify-content: center;
 }
@@ -104,6 +103,81 @@
   background: #292929;
 }
 
+
+
+/* Exit button */
+.exit {
+  position: absolute;
+  display: inline-flex; /* Change to inline-flex */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0px 25px 15px;
+  min-width: 150px;
+  text-align: center; /* Add this line to center the text */
+}
+
+.exit span {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  transition: 0.3s;
+  text-align: center; /* Add this line to center the text */
+}
+
+.exit-1::before {
+  background-color: #f10707;
+  transition: 0.3s ease-out;
+}
+
+.exit-1 span {
+  color: rgb(255, 255, 255);
+  border: 1px solid #f10707;
+  transition: 0.2s 0.1s;
+}
+
+.exit-1 span:hover {
+  color: #f10707;
+  transition: 0.2s 0.1s;
+}
+
+:active,
+:hover,
+:focus {
+  outline: 0 !important;
+  outline-offset: 0;
+}
+
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+
+.exit.hover-filled-slide-left::before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.exit.hover-filled-slide-left:hover::before {
+  width: 0%;
+}
+
+
 /* Responsive Adjustments */
 @media screen and (max-width: 1265px) {
   .boton-elegante {
@@ -121,6 +195,14 @@
     top: 10px; /* Adjust top position for smaller screens */
     left: 1px; /* Adjust left position for smaller screens */
   }
+  .exit {
+    position: relative; /* Change to relative */
+    margin: 0 auto; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center vertically */
+    transform: translate(-25%, 50%); /* Center vertically and horizontally */
+  }
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -154,6 +236,13 @@
   .table th, .table td {
     padding: 3px; /* Reduce padding further for very small screens */
     font-size: 0.8rem; /* Reduce font size for better fit */
+  }
+  .exit {
+    position: relative; /* Change to relative */
+    margin: 0 auto; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center vertically */
+    transform: translate(-25%, -25%); /* Center vertically and horizontally */
   }
 
 }

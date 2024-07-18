@@ -117,7 +117,7 @@ const Workout = () => {
       }}>
         <span>Exit</span>
       </Link>
-      <div className="tracker-container" style={{ width: '80%', maxWidth: '500px', marginRight: '680px', marginBottom: '20px', paddingBottom: '20px' }}>
+      <div className="tracker-container">
         <h2>Add</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
