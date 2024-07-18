@@ -115,8 +115,6 @@ body {
   box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
 }
 
-
-
 /* Keyframes for floating animation */
 @keyframes floatIn {
   from {
@@ -215,11 +213,12 @@ body {
 
 .title {
   color: white;
-  font-size: 10em;
   font-family: 'Times New Roman', Times, serif;
   position: absolute;
   top: 10px;
+  font-size: 10rem;
 }
+
 
 .note {
   color: white;
@@ -229,6 +228,17 @@ body {
   top: 200px;
   justify-content: center;
 }
+.absolute-position {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 
 /* Media queries for smaller screens */
 @media screen and (max-width: 1592px) {
@@ -258,7 +268,7 @@ body {
   }
 
   .title {
-    font-size: 8em;
+    font-size: 8rem;
   }
 
   .note {
@@ -337,7 +347,7 @@ body {
   }
 
   .title {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   .note {
@@ -388,80 +398,98 @@ body {
   }
 }
 
+/* Media queries for screens with max-width of 393px */
 @media screen and (max-width: 393px) {
   .d-flex {
-    /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
 
   .bg {
-    /* Adjust background styles */
     background-size: cover;
   }
 
   .box {
-    /* Adjust box styles */
     width: 200px;
     padding: 20px;
   }
 
   .img {
-    /* Adjust image styles */
     width: 120px;
     height: 120px;
   }
 
   .message {
-    /* Adjust text styles */
     font-size: 0.9em;
   }
 
   .link {
-    /* Adjust link styles */
     font-size: 0.7em;
   }
 
   .Btn {
-    margin-top: 50px;
-    margin-right: 130px;
+    width: 25px;
+    height: 25px;
+    padding: 0; /* Ensure the button doesn't have extra padding */
+  }
+
+  .Btn .sign svg {
+    width: 20px; /* Adjust the SVG size */
+  }
+
+  .Btn .text {
+    font-size: 0.8em; /* Adjust the text size */
+  }
+
+  .title {
+    font-size: 1.5rem; /* Adjusted font size */
+
   }
 }
 
-@media screen and (max-width: 320px) {
+/* Media queries for screens with max-width of 320px */
+@media screen and (max-width: 375px) {
   .d-flex {
-    /* Adjust flex direction for smaller screens */
     flex-direction: column;
   }
 
   .bg {
-    /* Adjust background styles */
     background-size: cover;
   }
 
   .box {
-    /* Adjust box styles */
     width: 180px;
     padding: 15px;
   }
 
   .img {
-    /* Adjust image styles */
     width: 100px;
     height: 100px;
   }
 
   .message {
-    /* Adjust text styles */
     font-size: 0.8em;
   }
 
   .link {
-    /* Adjust link styles */
     font-size: 0.6em;
   }
 
   .Btn {
-    margin-top: 50px;
-    margin-right: 100px;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0; /* Ensure the button doesn't have extra padding */
+    margin-right: 1px;
+  }
+
+  .Btn .sign svg {
+    width: 20px; /* Adjust the SVG size */
+  }
+
+  .Btn .text {
+    font-size: 0.7em; /* Adjust the text size */
+  }
+
+  .title {
+    font-size: 2rem !important; /* Adjusted font size */
   }
 }

@@ -25,16 +25,7 @@ function Home() {
 
     return (
         <div className='d-flex justify-content-center align-items-center vh-100 bg'>
-            <button className='floatIn floatInDelay6' onClick={handleLogout} style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                zIndex: '10',
-                textDecoration: 'none',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer'
-            }}>
+            <button className='floatIn floatInDelay6 absolute-position' onClick={handleLogout}>
                 <div className="Btn">
                     <div className="sign">
                         <svg viewBox="0 0 512 512">

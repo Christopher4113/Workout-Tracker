@@ -22,6 +22,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: auto;
   margin-top: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Common Styles */
@@ -131,21 +133,22 @@
   }
 
   .boton-elegante {
-    padding: 10px 20px; /* Adjust padding for smaller screens */
+    padding: 10px 15px; /* Adjust padding for smaller screens */
     font-size: 1rem; /* Adjust font size for smaller screens */
   }
 }
 
 @media screen and (max-width: 430px) {
   .boton-elegante {
-    padding: 3px 5px; /* Adjust padding for smaller screens */
+    padding: 10px 15px; /* Adjust padding for smaller screens */
     font-size: 0.8rem; /* Adjust font size for smaller screens */
-    top: 10px; /* Adjust top position for smaller screens */
+    top: 20px; /* Adjust top position for smaller screens */
     left: 1px; /* Adjust left position for smaller screens */
   }
 
   .table-container {
     width: 90%; /* Adjust width for smaller screens */
+    margin-top: 80px !important;
   }
 
   .table th, .table td {

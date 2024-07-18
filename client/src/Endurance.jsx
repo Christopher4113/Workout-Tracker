@@ -88,23 +88,8 @@ const Endurance = () => {
                     <div className="text">Logout</div>
                 </button>
             </button>
-            <Link to="/home" className="no-underline" style={{
-                position: 'absolute', 
-                top: '20px',
-                left: '20px', 
-                zIndex: '10', 
-                textDecoration: 'none'
-            }}>
-                <button className="custom-btn">
-                    <span className="custom-icon">
-                        <svg viewBox="0 0 175 80" width="40" height="40">
-                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                        </svg>
-                    </span>
-                    <span className="custom-text">MENU</span>
-                </button>
+            <Link to='/home' class="boton-elegante">
+                Menu
             </Link>
             <div className="table-container mt-4" style={{
                 width: '80%',
