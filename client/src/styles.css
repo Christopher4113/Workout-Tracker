@@ -71,7 +71,7 @@
   border-radius: 30px;
   transition: all 0.4s ease;
   outline: none;
-  position: fixed; /* Fixed positioning */
+  position: absolute; /* Fixed positioning */
   top: 20px; /* Adjust top position as needed */
   left: 20px; /* Adjust left position as needed */
   text-decoration: none; /* Remove underline */
@@ -154,6 +154,19 @@
   .table th, .table td {
     padding: 3px; /* Reduce padding further for very small screens */
     font-size: 0.8rem; /* Reduce font size for better fit */
+  }
+
+}
+@media screen and (max-width: 320px) {
+ 
+  .table-container {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-top: 80px !important;
+  }
+
+  .table th, .table td {
+    padding: 0.8px; /* Reduce padding further for very small screens */
+    font-size: 0.7rem; /* Reduce font size for better fit */
   }
 
 }
