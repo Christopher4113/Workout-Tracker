@@ -13,6 +13,8 @@ const Workout = () => {
     reps: ['']
   });
 
+  const serverURL = import.meta.VITE_SERVER_URL
+
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   const handleInputChange = (e) => {
@@ -81,7 +83,7 @@ const Workout = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from sessionStorage or other storage
 
-    axios.post('http://localhost:3001/workout', { formData }, {
+    axios.post(`${serverURL}/workout`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const serverURL = import.meta.VITE_SERVER_URL
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,7 +16,7 @@ function Login() {
             setError("Email and password are required");
             return;
         }
-        axios.post('http://localhost:3001/login', { email, password })
+        axios.post(`${serverURL}/login`, { email, password })
             .then(result => {
                 if (result.data.message === "Success") {
                     sessionStorage.setItem('token', result.data.token);

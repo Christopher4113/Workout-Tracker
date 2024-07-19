@@ -13,11 +13,11 @@ const updateEndurance = () => {
     duration: '',
     distance: ''
   });
-
+  const serverURL = import.meta.VITE_SERVER_URL
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/endurance/getWorkout/${id}`, {
+    axios.get(`${serverURL}/endurance/getWorkout/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -91,7 +91,7 @@ const updateEndurance = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
-    axios.put(`http://localhost:3001/endurance/updateWorkout/${id}`, { formData }, {
+    axios.put(`${serverURL}/endurance/updateWorkout/${id}`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

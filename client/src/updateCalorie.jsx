@@ -11,11 +11,11 @@ const updateCalorie = () => {
     date: '',
     calorie:''
   });
-
+  const serverURL = import.meta.VITE_SERVER_URL
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/calorie/getCalorie/${id}`, {
+    axios.get(`${serverURL}/calorie/getCalorie/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -61,7 +61,7 @@ const updateCalorie = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
-    axios.put(`http://localhost:3001/calorie/updateCalorie/${id}`, { formData }, {
+    axios.put(`${serverURL}/calorie/updateCalorie/${id}`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

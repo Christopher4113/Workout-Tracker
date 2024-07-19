@@ -10,7 +10,7 @@ const createCalorie = () => {
     date: '',
     calorie:''
   });
-
+  const serverURL = import.meta.VITE_SERVER_URL
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const handleClear = () => {
     setFormData({
@@ -43,7 +43,7 @@ const createCalorie = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
-    axios.post('http://localhost:3001/calorie', { formData }, {
+    axios.post(`${serverURL}/calorie`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

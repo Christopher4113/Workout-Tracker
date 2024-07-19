@@ -13,11 +13,12 @@ const UpdateWT = () => {
     weights: [''],
     reps: ['']
   });
+  const serverURL = import.meta.VITE_SERVER_URL
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/workout/getWorkout/${id}`, {
+    axios.get(`${serverURL}/workout/getWorkout/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -101,7 +102,7 @@ const UpdateWT = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from localStorage or other storage
 
-    axios.put(`http://localhost:3001/workout/updateWorkout/${id}`, { formData }, {
+    axios.put(`${serverURL}/workout/updateWorkout/${id}`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -12,7 +12,7 @@ const CreateEndurance = () => {
     duration: '',
     distance: ''
   });
-
+  const serverURL = import.meta.VITE_SERVER_URL
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   const handleClear = () => {
@@ -68,7 +68,7 @@ const CreateEndurance = () => {
 
     const token = sessionStorage.getItem('token'); // Get the token from sessionStorage or other storage
 
-    axios.post('http://localhost:3001/endurance', { formData }, {
+    axios.post(`${serverURL}/endurance`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }

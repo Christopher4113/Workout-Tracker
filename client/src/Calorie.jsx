@@ -7,7 +7,7 @@ import endurance from './assets/calorie.jpg';
 const Calorie = () => {
     const [info, setInfo] = useState([]);
     const navigate = useNavigate(); // useNavigate hook for navigation
-
+    const serverURL = import.meta.VITE_SERVER_URL
     const daysOrder = {
         'Monday': 1,
         'Tuesday': 2,
@@ -19,7 +19,7 @@ const Calorie = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3001/calorie', {
+        axios.get(`${serverURL}/calorie`, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -36,7 +36,7 @@ const Calorie = () => {
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3001/calorie/deleteCalorie/${id}`, {
+        axios.delete(`${serverURL}/calorie/deleteCalorie/${id}`, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }

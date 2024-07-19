@@ -7,7 +7,7 @@ import endurance from './assets/endurance.jpg';
 const Endurance = () => {
     const [info, setInfo] = useState([]);
     const navigate = useNavigate(); // useNavigate hook for navigation
-
+    const serverURL = import.meta.VITE_SERVER_URL
     const daysOrder = {
         'Monday': 1,
         'Tuesday': 2,
@@ -19,7 +19,7 @@ const Endurance = () => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3001/endurance', {
+        axios.get(`${serverURL}/endurance`, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -36,7 +36,7 @@ const Endurance = () => {
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3001/endurance/deleteWorkout/${id}`, {
+        axios.delete(`${serverURL}/endurance/deleteWorkout/${id}`, {
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`
             }

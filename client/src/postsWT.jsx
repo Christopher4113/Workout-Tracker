@@ -16,9 +16,10 @@ const PostsWT = () => {
     'Saturday': 6,
     'Sunday': 7
   };
+  const serverURL = import.meta.VITE_SERVER_URL
 
   useEffect(() => {
-    axios.get('http://localhost:3001/workout', {
+    axios.get(`${serverURL}/workout`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
@@ -35,7 +36,7 @@ const PostsWT = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/workout/deleteWorkout/${id}`, {
+    axios.delete(`${serverURL}/workout/deleteWorkout/${id}`, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
