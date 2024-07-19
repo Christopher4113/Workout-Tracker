@@ -53,7 +53,7 @@ const Calorie = () => {
     };
 
     return (
-        <div className='bg-secondary vh-100 d-flex flex-column align-items-center justify-content-center' style={{
+        <div className='bg-screen vh-100 d-flex flex-column align-items-center justify-content-center' style={{
             backgroundImage: `url(${endurance})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -82,7 +82,7 @@ const Calorie = () => {
                     <div className="text">Logout</div>
                 </button>
             </button>
-            <Link to='/home' class="boton-elegante">
+            <Link to='/home' className="boton-elegante">
                 Menu
             </Link>
             <a href="https://www.calculator.net/calorie-calculator.html" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>

@@ -201,7 +201,7 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 430px) {
   .title {
     font-size: 10vw;
   }
@@ -226,7 +226,7 @@
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 390px) {
   .title {
     font-size: 12vw;
   }

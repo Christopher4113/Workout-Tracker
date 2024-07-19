@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import start from './assets/start.jpg';
 import './start.css';
 import { useNavigate } from 'react-router-dom';
 import icon from './assets/icon.png';

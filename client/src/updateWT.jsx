@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import './styles.css'; // Import the CSS file
-import weight from './assets/weight.jpg';
 import axios from 'axios';
 
 const UpdateWT = () => {

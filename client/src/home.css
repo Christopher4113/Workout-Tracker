@@ -275,10 +275,11 @@ body {
     font-size: 1em;
     display: flex;
     justify-content: center; /* Center horizontally */
+    text-align: center;
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1261px) {
   .bg {
     /* Adjust background styles */
     background-size: cover;
@@ -312,7 +313,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 967px) {
   .bg {
     /* Adjust background styles */
     background-size: cover;
@@ -353,6 +354,17 @@ body {
   .note {
     font-size: 1em;
     text-align: center;
+  }
+}
+@media screen and (max-width: 603px) {
+  .d-flex {
+    /* Adjust flex direction for smaller screens */
+    flex-direction: column;
+
+  }
+  .contain {
+    margin-top: 50px;
+    padding-top: 950px; /* Added padding-top to move all boxes lower */
   }
 }
 

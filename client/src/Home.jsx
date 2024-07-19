@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './home.css'; // Import the CSS file
-import menu from './assets/menu.jpg';
 import dumbell from './assets/dumbell.jpg';
 import running from './assets/running.jpg';
 import food from './assets/food.webp';
@@ -40,7 +39,7 @@ function Home() {
                 Select Tracker
             </h1>
             <p className='floatIn floatInDelay2 note'>
-                Note: I did not implement any unit values for the weights, duration, and distance which leads it up to you to interpret the values you implement
+                Note: I did not implement any unit values for the weights, duration, and distance which leads it up to you to interpret the values you implement. If your workout does not initially show up in the start just refresh the page
             </p>
 
             <div className='d-flex justify-content-around contain'>

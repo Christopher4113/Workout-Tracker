@@ -82,64 +82,16 @@
   min-width: 100%;
 }
 
-/* Custom Button Styles */
-.custom-btn {
-  width: 150px;
-  height: 50px;
-  border-radius: 5px;
-  border: none;
-  transition: all 0.5s ease-in-out;
-  font-size: 20px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  background: #040f16;
-  color: #f5f5f5;
-}
 
-.custom-btn:hover {
-  box-shadow: 0 0 20px 0px #2e2e2e3a;
-}
 
-.custom-btn .custom-icon {
-  position: absolute;
-  height: 40px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-}
 
-.custom-btn .custom-text {
-  transform: translateX(55px);
-}
-
-.custom-btn:hover .custom-icon {
-  width: 175px;
-}
-
-.custom-btn:hover .custom-text {
-  transition: all 0.5s;
-  opacity: 0;
-}
-
-.custom-btn:focus {
-  outline: none;
-}
-
-.custom-btn:active .custom-icon {
-  transform: scale(0.85);
-}
 
 /* Exit button */
 .exit {
-  position: relative;
+  position: absolute;
   display: inline-flex; /* Change to inline-flex */
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  display: inline-block;
   width: auto;
   height: auto;
   background-color: transparent;
@@ -181,8 +133,10 @@
   transition: 0.2s 0.1s;
 }
 
-:active, :hover, :focus {
-  outline: 0!important;
+:active,
+:hover,
+:focus {
+  outline: 0 !important;
   outline-offset: 0;
 }
 
@@ -204,31 +158,63 @@
   width: 0%;
 }
 
-/* Scrollable Form Container */
-.scrollable-form-container {
-width: 80%;
-max-width: 500px;
-max-height: 70vh; /* Adjust the height as needed */
-overflow-y: auto;
-margin-left: 1350px;
-margin-bottom: 20px;
-padding: 20px;
-background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for readability */
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+/* Custom Button Styles */
+.boton-elegante {
+  padding: 15px 30px;
+  border: 2px solid #2c2c2c;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: absolute; /* Fixed positioning */
+  top: 20px; /* Adjust top position as needed */
+  left: 20px; /* Adjust left position as needed */
+  text-decoration: none; /* Remove underline */
+  z-index: 1000; /* Ensure it's above other content */
+  font-weight: bold;
+}
+
+.boton-elegante::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+  transform: scale(4);
+}
+
+.boton-elegante:hover {
+  border-color: #666666;
+  background: #292929;
 }
 
 /* Workout Tracker form */
 .tracker-container {
-width: 80%; /* Adjust width to fit the design */
-max-width: 500px;
-margin-bottom: 20px;
-padding: 20px;
-background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for readability */
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-margin: auto;
-margin-top: 20px;
+  width: 80%; /* Adjust width to fit the design */
+  max-width: 500px;
+  margin-top: 200px !important;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Optional: Add a background for readability */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Common Styles */
@@ -297,4 +283,114 @@ animation: scaleUp 0.3s ease-in-out;
 100% {
   transform: scale(1);
 }
+}
+.table-container {
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling on smaller screens */
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  table-layout: auto; /* Adjusts the table width based on content */
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.thead-dark th {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1265px) {
+  .boton-elegante {
+    padding: 12px 25px; /* Adjust padding for medium screens */
+    font-size: 1.1rem; /* Adjust font size for medium screens */
+    top: 15px; /* Adjust top position for medium screens */
+    left: 1px; /* Adjust left position for medium screens */
+  }
+}
+
+@media screen and (max-width: 999px) {
+  .boton-elegante {
+    padding: 5px 15px; /* Adjust padding for smaller screens */
+    font-size: 1rem; /* Adjust font size for smaller screens */
+    top: 10px; /* Adjust top position for smaller screens */
+    left: 1px; /* Adjust left position for smaller screens */
+  }
+  .exit {
+    position: relative; /* Change to relative */
+    margin: 0 auto; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center vertically */
+    transform: translate(-25%, 50%); /* Center vertically and horizontally */
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  .table-container {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .table th, .table td {
+    padding: 5px; /* Reduce padding inside table cells */
+  }
+
+  .boton-elegante {
+    padding: 10px 15px; /* Adjust padding for smaller screens */
+    font-size: 1rem; /* Adjust font size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .boton-elegante {
+    padding: 10px 15px; /* Adjust padding for smaller screens */
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+    top: 20px; /* Adjust top position for smaller screens */
+    left: 1px; /* Adjust left position for smaller screens */
+  }
+
+  .table-container {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-top: 80px !important;
+  }
+
+  .table th, .table td {
+    padding: 3px; /* Reduce padding further for very small screens */
+    font-size: 0.8rem; /* Reduce font size for better fit */
+  }
+  .exit {
+    position: relative; /* Change to relative */
+    margin: 0 auto; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center vertically */
+    transform: translate(-25%, -25%); /* Center vertically and horizontally */
+  }
+
+}
+@media screen and (max-width: 320px) {
+ 
+  .table-container {
+    width: 90%; /* Adjust width for smaller screens */
+    margin-top: 80px !important;
+  }
+
+  .table th, .table td {
+    padding: 0.8px; /* Reduce padding further for very small screens */
+    font-size: 0.7rem; /* Reduce font size for better fit */
+  }
+
 }
