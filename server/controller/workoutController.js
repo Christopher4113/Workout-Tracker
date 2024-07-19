@@ -3,6 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 // Add new workout
+router.get('/',async (req,res) => {
+  res.send("This works")
+})
+
+
+
 router.post('/', async (req, res) => {
   const userId = req.user.userId; // The user ID should be extracted from the JWT token
   const { date, workout, sets, weights, reps } = req.body.formData;
