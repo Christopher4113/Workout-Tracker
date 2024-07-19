@@ -12,21 +12,7 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
-
-const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:3001'];
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
