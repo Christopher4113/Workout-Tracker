@@ -11,7 +11,22 @@ const calorieRouter = require('./controller/calorieController');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:3001'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
 
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
