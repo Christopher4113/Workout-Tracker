@@ -7,7 +7,7 @@ import endurance from './assets/endurance.jpg';
 const Endurance = () => {
     const [info, setInfo] = useState([]);
     const navigate = useNavigate(); // useNavigate hook for navigation
-    const serverURL = import.meta.VITE_SERVER_URL
+    const serverURL = import.meta.env.VITE_SERVER_URL;
     const daysOrder = {
         'Monday': 1,
         'Tuesday': 2,
@@ -88,7 +88,7 @@ const Endurance = () => {
                     <div className="text">Logout</div>
                 </button>
             </button>
-            <Link to='/home' className="boton-elegante">
+            <Link to='/menu' className="boton-elegante">
                 Menu
             </Link>
             <div className="table-container mt-4">

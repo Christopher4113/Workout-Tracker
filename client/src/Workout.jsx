@@ -13,7 +13,7 @@ const Workout = () => {
     reps: ['']
   });
 
-  const serverURL = import.meta.VITE_SERVER_URL
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 

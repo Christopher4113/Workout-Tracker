@@ -16,7 +16,7 @@ const PostsWT = () => {
     'Saturday': 6,
     'Sunday': 7
   };
-  const serverURL = import.meta.VITE_SERVER_URL
+  const serverURL = import.meta.env.VITE_SERVER_URL;
 
   useEffect(() => {
     axios.get(`${serverURL}/workout`, {
@@ -78,7 +78,7 @@ const PostsWT = () => {
                 <div className="text">Logout</div>
             </div>
         </button>
-        <Link to='/home' className="boton-elegante">
+        <Link to='/menu' className="boton-elegante">
           Menu
         </Link>
 

@@ -10,12 +10,12 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const serverURL = import.meta.VITE_SERVER_URL
+    const serverURL = import.meta.env.VITE_SERVER_URL;
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setError(""); // Clear previous errors
-
         axios.post(`${serverURL}/register`, { name, email, password })
             .then(result => {
                 if (result.data.error) {
