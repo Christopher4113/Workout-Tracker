@@ -104,6 +104,10 @@ app.use('/workout', authenticateToken, workoutRouter);
 app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Workout Tracker API');
+});
+
 
 const PORT = process.env.PORT || 3001;
 
