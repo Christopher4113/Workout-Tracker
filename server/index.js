@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
 const calorieRouter = require('./controller/calorieController');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
@@ -27,7 +28,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
 console.log('MongoDB URI:', process.env.MONGO_URI);
@@ -45,7 +45,6 @@ app.post("/login", (req, res) => {
   if (!email || !password) {
     return res.json({ error: "Email and password are required" });
   }
-  //Checking if passwords match in bycrypt system
   userModel.findOne({ email: email })
     .then(user => {
       if (user) {
@@ -71,7 +70,7 @@ app.post("/login", (req, res) => {
       res.status(500).json({ error: "An error occurred. Please try again." });
     });
 });
-//registering and hashing
+
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -102,7 +101,7 @@ app.post('/register', (req, res) => {
     })
     .catch(error => res.json(error));
 });
-//authentication
+
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
@@ -115,10 +114,15 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Apply the middleware to routes that require authentication
 app.use('/workout', authenticateToken, workoutRouter);
 app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
+
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
 
 app.listen(3001, () => {
   console.log("Server is running");
