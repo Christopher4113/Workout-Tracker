@@ -12,10 +12,7 @@ const calorieRouter = require('./controller/calorieController');
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:5173', // or the appropriate URL of your local frontend
-  credentials: true,
-}));
+app.use(cors());
 
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
