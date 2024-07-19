@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
 const calorieRouter = require('./controller/calorieController');
-const path = require('path');
+
 
 const app = express();
 app.use(express.json());
@@ -104,11 +104,6 @@ app.use('/workout', authenticateToken, workoutRouter);
 app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
 
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
 app.listen(3001, () => {
   console.log("Server is running");
