@@ -12,7 +12,10 @@ const calorieRouter = require('./controller/calorieController');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // or the appropriate URL of your local frontend
+  credentials: true,
+}));
 
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
@@ -105,6 +108,8 @@ app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
 
 
-app.listen(3001, () => {
-  console.log("Server is running");
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
