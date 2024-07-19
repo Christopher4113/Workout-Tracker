@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './Signup';
 import Login from './Login';
-import Home from './home.jsx';
+import Menu from './Menu.jsx';
 import PrivateRoute from './PrivateRoute';
 import Workout from './Workout'; // Import Workout component
 import Endurance from './Endurance'; // Import Endurance component
@@ -23,7 +23,7 @@ function App() {
           <Route path="/start" element={<Start />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/menu" element={<PrivateRoute><Menu /></PrivateRoute>} />
           <Route path="/Workout" element={<Workout />} />
           <Route path="/Endurance" element={<PrivateRoute><Endurance /></PrivateRoute>} />
           <Route path="/Calorie" element={<PrivateRoute><Calorie /> </PrivateRoute>} />

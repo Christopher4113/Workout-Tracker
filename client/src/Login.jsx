@@ -20,7 +20,7 @@ function Login() {
             .then(result => {
                 if (result.data.message === "Success") {
                     sessionStorage.setItem('token', result.data.token);
-                    navigate('/home');
+                    navigate('/menu');
                 } else {
                     setError(result.data.error);
                 }

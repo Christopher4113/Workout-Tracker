@@ -5,7 +5,7 @@ import running from './assets/running.jpg';
 import food from './assets/food.webp';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate from react-router-dom
 
-function Home() {
+function Menu() {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,4 +63,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default Menu;
