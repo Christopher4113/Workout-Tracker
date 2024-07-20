@@ -5,24 +5,15 @@ const userModel = require("./models/User");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const path = require('path'); // Correctly require 'path'
+const path = require('path');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
 const calorieRouter = require('./controller/calorieController');
 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-// Serve static files from the React app's dist directory
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
-// Catch-all route to serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
-
-const PORT = process.env.PORT || 3001;
 
 const SECRET_KEY = process.env.SECRET_KEY || "your_default_secret_key";
 
@@ -117,6 +108,9 @@ app.use('/calorie', authenticateToken, calorieRouter);
 app.get('/', (req, res) => {
   res.send('Welcome to the Workout Tracker API');
 });
+
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
