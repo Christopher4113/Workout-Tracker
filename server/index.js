@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require("cors");
+const path = require('path');
 const userModel = require("./models/User");
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
@@ -8,7 +9,6 @@ const bcrypt = require('bcryptjs');
 const workoutRouter = require('./controller/workoutController');
 const enduranceRouter = require('./controller/enduranceController');
 const calorieRouter = require('./controller/calorieController');
-
 
 const app = express();
 app.use(express.json());
@@ -104,10 +104,17 @@ app.use('/workout', authenticateToken, workoutRouter);
 app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
+
 app.get('/', (req, res) => {
   res.send('Welcome to the Workout Tracker API');
 });
-
 
 const PORT = process.env.PORT || 3001;
 
