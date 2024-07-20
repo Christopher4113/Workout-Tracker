@@ -105,6 +105,15 @@ app.use('/workout', authenticateToken, workoutRouter);
 app.use('/endurance', authenticateToken, enduranceRouter);
 app.use('/calorie', authenticateToken, calorieRouter);
 
+// Serve static files from the client build directory
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Catch-all handler to serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
+
+
 app.get('/', (req, res) => {
   res.send('Welcome to the Workout Tracker API');
 });
