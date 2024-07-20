@@ -28,7 +28,7 @@ const UpdateWT = () => {
         setFormData({
           date: data.date,
           workout: data.workout,
-          sets: data.sets,
+          sets: data.sets.toString(),
           weights: data.weights.map(w => w.toString()),
           reps: data.reps.map(r => r.toString())
         });
@@ -39,7 +39,7 @@ const UpdateWT = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     if (name === 'sets') {
-      const sets = Math.max(1, parseInt(value, 10) || 1); // Ensure the minimum value for sets is 1
+      const sets = value === '' ? '' : Math.max(0, parseInt(value, 10) || 0);
       const weights = formData.weights.slice(0, sets); // Trim weights array if sets are reduced
       const reps = formData.reps.slice(0, sets); // Trim reps array if sets are reduced
       while (weights.length < sets) weights.push(''); // Add empty entries if sets are increased
@@ -92,11 +92,13 @@ const UpdateWT = () => {
       return;
     }
 
-    // Check if all weights and reps are filled
-    for (let i = 0; i < sets; i++) {
-      if (weights[i] === '' || reps[i] === '') {
-        alert("Please fill in all weights and reps.");
-        return;
+    // Check if all weights and reps are filled if sets is greater than 0
+    if (sets > 0) {
+      for (let i = 0; i < sets; i++) {
+        if (weights[i] === '' || reps[i] === '') {
+          alert("Please fill in all weights and reps.");
+          return;
+        }
       }
     }
 
@@ -170,10 +172,10 @@ const UpdateWT = () => {
               className="form-control rounded-0"
               value={formData.sets}
               onChange={handleInputChange}
-              min="1"
+              min="0"
             />
           </div>
-          {Array.from({ length: formData.sets }).map((_, index) => (
+          {Array.from({ length: parseInt(formData.sets) || 0 }).map((_, index) => (
             <div key={index} className="mb-3">
               <label>
                 <strong>Set {index + 1}</strong>
