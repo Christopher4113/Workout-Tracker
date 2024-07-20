@@ -379,11 +379,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
+    overflow-y: auto;
   }
 
   .contain {
-    margin-top: 50px;
-    padding-top: 800px; /* Added padding-top to move all boxes lower */
+    margin-top: 5px;
+    padding-top: 700px; /* Added padding-top to move all boxes lower */
   }
 
   .box {
@@ -408,6 +409,10 @@ body {
     /* Adjust link styles */
     font-size: 0.8em;
   }
+  .note {
+    top: 100px;
+    max-width: 300px;
+  }
 }
 
 /* Media queries for screens with max-width of 393px */
@@ -419,7 +424,10 @@ body {
   .bg {
     background-size: cover;
   }
-
+  .contain {
+    margin-top: -10px;
+    padding-top: 600px; /* Added padding-top to move all boxes lower */
+  }
   .box {
     width: 200px;
     padding: 20px;
@@ -439,8 +447,8 @@ body {
   }
 
   .Btn {
-    width: 25px;
-    height: 25px;
+    width: 32px !important;
+    height: 32px !important;
     padding: 0; /* Ensure the button doesn't have extra padding */
   }
 
@@ -471,6 +479,56 @@ body {
   .box {
     width: 180px;
     padding: 15px;
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .message {
+    font-size: 0.8em;
+  }
+
+  .link {
+    font-size: 0.6em;
+  }
+
+  .Btn {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0; /* Ensure the button doesn't have extra padding */
+    margin-right: 1px;
+  }
+
+  .Btn .sign svg {
+    width: 20px; /* Adjust the SVG size */
+  }
+
+  .Btn .text {
+    font-size: 0.7em; /* Adjust the text size */
+  }
+
+  .title {
+    font-size: 2rem !important; /* Adjusted font size */
+  }
+}
+/* Media queries for screens with max-width of 320px */
+@media screen and (max-width: 320px) {
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .bg {
+    background-size: cover;
+  }
+
+  .box {
+    width: 180px;
+    padding: 15px;
+  }
+  .contain {
+    margin-top: 100px;
   }
 
   .img {

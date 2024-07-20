@@ -206,12 +206,16 @@
     font-size: 10vw;
   }
 
-  .p1, .p2 {
+  .p1 {
+    font-size: 3.5vw;
+    top: 100px;
+  }
+  .p2 {
     font-size: 3.5vw;
   }
 
   .image {
-    top: 350px;
+    top: 200px !important;
     width: 40vw;
     height: 40vw;
   }
@@ -251,19 +255,53 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .title {
     font-size: 14vw;
   }
 
-  .p1, .p2 {
+  .p1{
     font-size: 4vw;
+  }
+
+  .p2 {
+    font-size: 4vw;
+    bottom: 150px;
   }
 
   .image {
     top: 350px;
     width: 45vw;
     height: 45vw;
+  }
+
+  .start {
+    font-size: 8px;
+  }
+
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .title {
+    font-size: 14vw;
+  }
+
+  .p1{
+    font-size: 3vw;
+  }
+
+  .p2 {
+    font-size: 3vw;
+    bottom: 150px;
+  }
+
+  .image {
+    top: 160px !important;
+    width: 25vw;
+    height: 25vw;
   }
 
   .start {

@@ -115,7 +115,13 @@ const updateEndurance = () => {
       position: 'relative',
       flexDirection: 'column'
     }}>
-      <Link to="/Endurance" className="exit exit-1 hover-filled-slide-left">
+      <Link to="/Endurance" className="exit exit-1 hover-filled-slide-left" style={{
+        position: 'absolute',
+        top: '20px',
+        left: '20px',
+        zIndex: '10',
+        textDecoration: 'none'
+      }}>
         <span>Exit</span>
       </Link>
       <div className="tracker-container">
