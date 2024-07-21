@@ -77,6 +77,10 @@ SECRET_KEY=<your_secret_key>
 # Frontend URL
 FRONTEND_URL=http://localhost:5173
 
+
+
+
+
 ## Deployment
 
 This application is deployed on Render. Follow these steps to deploy your own version:
