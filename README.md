@@ -61,7 +61,7 @@ Before you begin, ensure you have the following installed:
     cd client
     npm run dev
 
-The frontend will start on http://localhost:3000.
+The frontend will start on http://localhost:3001.
 
 ## Environment Variables
 
