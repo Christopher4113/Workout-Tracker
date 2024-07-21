@@ -67,15 +67,14 @@ The frontend will start on http://localhost:3000.
 
 To run this project locally, add the following environment variables to your `.env` file in the `server` directory:
 
-```bash
-# MongoDB connection URI
-MONGO_URI=<your_mongo_db_connection_string>
+- MongoDB connection URI
+- MONGO_URI=<your_mongo_db_connection_string>
 
-# Secret key for JWT
-SECRET_KEY=<your_secret_key>
+- Secret key for JWT
+- SECRET_KEY=<your_secret_key>
 
-# Frontend URL
-FRONTEND_URL=http://localhost:5173
+- Frontend URL
+- FRONTEND_URL=http://localhost:5173
 
 
 
