@@ -39,7 +39,7 @@ function Menu() {
                 Select Tracker
             </h1>
             <p className='floatIn floatInDelay2 note'>
-                Note: I did not implement any unit values for the weights, duration, and distance which leads it up to you to interpret the values you implement. If your workout does not initially show up in the start just refresh the page
+                Note: I did not implement any unit values for the weights, duration, and distance which leads it up to you to interpret the values you implement.
             </p>
 
             <div className='d-flex justify-content-around contain'>
