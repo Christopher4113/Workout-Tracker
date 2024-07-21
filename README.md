@@ -13,7 +13,7 @@ Welcome to the Workout Tracker application! This application allows users to tra
 - [Deployment](#deployment)
 - [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
