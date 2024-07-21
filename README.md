@@ -65,7 +65,7 @@ The frontend will start on http://localhost:3000.
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your `.env` file in the `server` directory.
+To run this project locally, add the following environment variables to your `.env` file in the `server` directory:
 
 ```bash
 # MongoDB connection URI
