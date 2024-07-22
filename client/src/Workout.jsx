@@ -73,22 +73,17 @@ const Workout = () => {
       return;
     }
 
-    // Filter out empty sets
-    const validSets = [];
+    // Check if all weights and reps are filled
     for (let i = 0; i < sets; i++) {
-      if (weights[i] !== '' && reps[i] !== '') {
-        validSets.push({ weight: weights[i], rep: reps[i] });
+      if (weights[i] === '' || reps[i] === '') {
+        alert("Please fill in all weights and reps.");
+        return;
       }
-    }
-
-    if (validSets.length === 0) {
-      alert("Please fill in all weights and reps for at least one set.");
-      return;
     }
 
     const token = sessionStorage.getItem('token'); // Get the token from sessionStorage or other storage
 
-    axios.post(`${serverURL}/workout`, { date, workout, sets: validSets }, {
+    axios.post(`${serverURL}/workout`, { formData }, {
       headers: {
         Authorization: `Bearer ${token}`
       }
